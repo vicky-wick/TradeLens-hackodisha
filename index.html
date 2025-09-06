@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeLens - The Duolingo of Crypto Trading</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <button class="btn btn-primary" onclick="showAuth()">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    The <span class="gradient-text">Duolingo</span> of Crypto Trading
+                </h1>
+                <p class="hero-subtitle">
+                    Learn by predicting, compare with an AI mentor, and improve through 
+                    gamified risk-aware coaching with verifiable achievement badges.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary btn-large" onclick="showAuth()">
+                        <i class="fas fa-rocket"></i>
+                        Start Learning
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="showDemo()">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <span class="demo-title">Learn → Predict → Improve</span>
+                    </div>
+                    <div class="demo-content">
+                        <div class="step active">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Complete RSI Lesson</span>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Make BTC Prediction</span>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-robot"></i>
+                            <span>Compare with AI Mentor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Learning Hub</h3>
+                    <p>Interactive micro-lessons with quizzes and progress tracking</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-crystal-ball"></i>
+                    </div>
+                    <h3>Prediction Workspace</h3>
+                    <p>Make predictions with confidence levels and detailed rationale</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>ML Mentor</h3>
+                    <p>AI predictions with explainable SHAP-based reasoning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Feed</h3>
+                    <p>Share predictions and learn from other traders</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Risk Dashboard</h3>
+                    <p>Trader Health Score and personalized risk metrics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>NFT Badges</h3>
+                    <p>Verifiable achievement credentials on blockchain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2 class="section-title">See TradeLens in Action</h2>
+            <div class="demo-flow">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <h3>Learn RSI Basics</h3>
+                    <p>Complete interactive 3-card lesson with quiz</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <h3>Make Prediction</h3>
+                    <p>Predict BTC movement with confidence & rationale</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <h3>Compare with AI</h3>
+                    <p>See ML mentor's prediction & explanation</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <h3>Improve & Share</h3>
+                    <p>Get risk score & share in community</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideAuth()">&times;</span>
+            <h2>Join TradeLens</h2>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showTab('signup')">Sign Up</button>
+                <button class="tab-btn" onclick="showTab('login')">Login</button>
+            </div>
+            
+            <div id="signup" class="tab-content active">
+                <form class="auth-form" onsubmit="handleSignup(event)">
+                    <input type="text" placeholder="Display Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <select required>
+                        <option value="">Learning Goal</option>
+                        <option value="basics">Learn Basics</option>
+                        <option value="swing">Swing Trading</option>
+                        <option value="pro">Professional</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-divider">OR</div>
+                <button class="btn btn-wallet" onclick="connectWallet()">
+                    <i class="fas fa-wallet"></i>
+                    Connect Wallet
+                </button>
+            </div>
+            
+            <div id="login" class="tab-content">
+                <form class="auth-form" onsubmit="handleLogin(event)">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <div class="auth-divider">OR</div>
+                <button class="btn btn-wallet" onclick="connectWallet()">
+                    <i class="fas fa-wallet"></i>
+                    Connect Wallet
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/storage.js"></script>
+</body>
+</html>
