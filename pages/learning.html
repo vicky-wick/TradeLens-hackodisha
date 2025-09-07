@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub - TradeLens</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="learning.html" class="nav-link active">Learning</a>
+                <a href="prediction.html" class="nav-link">Predict</a>
+                <a href="community.html" class="nav-link">Community</a>
+                <div class="user-menu">
+                    <span id="userName">Loading...</span>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Learning Hub Header -->
+            <section class="learning-header">
+                <div class="header-content">
+                    <h1><i class="fas fa-graduation-cap"></i> Learning Hub</h1>
+                    <p>Master crypto trading through interactive lessons and hands-on practice</p>
+                </div>
+                <div class="progress-overview">
+                    <div class="level-badge">
+                        <span class="level-number">1</span>
+                        <span class="level-text">Beginner</span>
+                    </div>
+                    <div class="overall-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="overallProgress" style="width: 20%"></div>
+                        </div>
+                        <span class="progress-text">2/10 lessons completed</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lesson Selection -->
+            <section class="lesson-grid">
+                <div class="lesson-card completed" onclick="openLesson('rsi-basics')">
+                    <div class="lesson-status">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>RSI Basics</h3>
+                        <p>Learn the fundamentals of Relative Strength Index</p>
+                        <div class="lesson-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 5 min</span>
+                            <span class="difficulty">Beginner</span>
+                        </div>
+                    </div>
+                    <div class="lesson-score">92%</div>
+                </div>
+
+                <div class="lesson-card available" onclick="openLesson('volume-analysis')">
+                    <div class="lesson-status">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Volume Analysis</h3>
+                        <p>Understanding volume indicators and their significance</p>
+                        <div class="lesson-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 7 min</span>
+                            <span class="difficulty">Beginner</span>
+                        </div>
+                    </div>
+                    <div class="lesson-badge">New</div>
+                </div>
+
+                <div class="lesson-card locked">
+                    <div class="lesson-status">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>MACD Signals</h3>
+                        <p>Moving Average Convergence Divergence patterns</p>
+                        <div class="lesson-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 8 min</span>
+                            <span class="difficulty">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="unlock-requirement">Complete Volume Analysis</div>
+                </div>
+
+                <div class="lesson-card locked">
+                    <div class="lesson-status">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Bollinger Bands</h3>
+                        <p>Volatility and price channel analysis</p>
+                        <div class="lesson-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 6 min</span>
+                            <span class="difficulty">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="unlock-requirement">Complete MACD Signals</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Lesson Modal -->
+    <div id="lessonModal" class="modal">
+        <div class="lesson-modal-content">
+            <div class="lesson-header">
+                <h2 id="lessonTitle">RSI Basics</h2>
+                <button class="close-lesson" onclick="closeLessonModal()">&times;</button>
+            </div>
+            
+            <div class="lesson-progress-bar">
+                <div class="lesson-progress-fill" id="lessonProgress"></div>
+            </div>
+            
+            <div class="lesson-content-area">
+                <!-- Lesson cards will be dynamically inserted here -->
+                <div id="lessonCards"></div>
+            </div>
+            
+            <div class="lesson-navigation">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <span class="card-counter" id="cardCounter">1 / 3</span>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="quiz-modal-content">
+            <div class="quiz-header">
+                <h2><i class="fas fa-question-circle"></i> Knowledge Check</h2>
+            </div>
+            
+            <div class="quiz-content">
+                <div class="question-area">
+                    <h3 id="quizQuestion">If RSI = 78 and volume is falling, what's the likeliest short-term move?</h3>
+                    <div class="quiz-options" id="quizOptions">
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz" value="A">
+                            <span>A) Continue rising strongly</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz" value="B">
+                            <span>B) Short-term reversal more likely</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz" value="C">
+                            <span>C) No clear indication</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" onclick="submitQuiz()">Submit Answer</button>
+                </div>
+                
+                <div class="quiz-result" id="quizResult" style="display: none;">
+                    <!-- Quiz result will be shown here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/learning.js"></script>
+</body>
+</html>
