@@ -35,6 +35,112 @@ function initializeLearning() {
 
 function initializeLessonData() {
     lessonData = {
+        'crypto-basics': {
+            title: 'Crypto Fundamentals',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'What is Cryptocurrency?',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Cryptocurrency</strong> is digital money secured by cryptography and powered by blockchain technology.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-shield-alt text-primary"></i>
+                                    <span><strong>Decentralized</strong> - No central authority controls it</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-lock text-success"></i>
+                                    <span><strong>Secure</strong> - Protected by advanced cryptography</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-globe text-info"></i>
+                                    <span><strong>Global</strong> - Works 24/7 across borders</span>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                <p><strong>Key Insight:</strong> Unlike traditional money, crypto operates without banks or governments controlling it.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Blockchain Basics',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Blockchain is like a digital ledger that everyone can see but no one can cheat:</p>
+                            <div class="blockchain-visual">
+                                <div class="block">
+                                    <h5>Block 1</h5>
+                                    <p>Alice → Bob: 5 BTC</p>
+                                </div>
+                                <div class="chain-link">⛓️</div>
+                                <div class="block">
+                                    <h5>Block 2</h5>
+                                    <p>Bob → Charlie: 2 BTC</p>
+                                </div>
+                                <div class="chain-link">⛓️</div>
+                                <div class="block">
+                                    <h5>Block 3</h5>
+                                    <p>Charlie → Dave: 1 BTC</p>
+                                </div>
+                            </div>
+                            <div class="insight-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p>Each block is linked to the previous one, making it impossible to change past transactions!</p>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Getting Started with Crypto',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Your First Steps:</h4>
+                            <div class="steps-grid">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>Learn the Basics</h5>
+                                        <p>Understand Bitcoin, Ethereum, and major cryptocurrencies</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>Choose an Exchange</h5>
+                                        <p>Pick a reputable platform like Coinbase or Binance</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>Start Small</h5>
+                                        <p>Only invest what you can afford to lose</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="warning-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p><strong>Remember:</strong> Crypto is volatile! Never invest more than you can afford to lose.</p>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What makes cryptocurrency different from traditional money?",
+                options: [
+                    { value: 'A', text: 'It\'s only digital' },
+                    { value: 'B', text: 'It\'s decentralized and secured by cryptography' },
+                    { value: 'C', text: 'It\'s more expensive' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Cryptocurrency is decentralized (no central authority) and secured by advanced cryptography, making it fundamentally different from traditional money."
+            }
+        },
         'rsi-basics': {
             title: 'RSI Basics',
             cards: [
@@ -215,6 +321,1339 @@ function initializeLessonData() {
                 ],
                 correct: 'B',
                 explanation: "Correct! Declining volume during a price rise suggests weakening conviction and potential trend reversal."
+            }
+        },
+        'moving-averages': {
+            title: 'Moving Averages',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Understanding Moving Averages',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Moving Averages</strong> smooth out price data to identify trend direction over time.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-chart-line text-primary"></i>
+                                    <span><strong>SMA (Simple)</strong> - Average of closing prices over N periods</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-trending-up text-success"></i>
+                                    <span><strong>EMA (Exponential)</strong> - Gives more weight to recent prices</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-clock text-info"></i>
+                                    <span><strong>Common periods:</strong> 20, 50, 100, 200 days</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'MA Crossover Signals',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Moving average crossovers generate buy/sell signals:</p>
+                            <div class="crossover-example">
+                                <div class="signal bullish">
+                                    <h5>🟢 Golden Cross (Bullish)</h5>
+                                    <p>Short MA crosses above Long MA</p>
+                                </div>
+                                <div class="signal bearish">
+                                    <h5>🔴 Death Cross (Bearish)</h5>
+                                    <p>Short MA crosses below Long MA</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'MA Trading Strategy',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Simple MA Strategy:</h4>
+                            <ul>
+                                <li>Price above 50 MA = Uptrend</li>
+                                <li>Price below 50 MA = Downtrend</li>
+                                <li>Use 20/50 crossover for entry signals</li>
+                                <li>Combine with volume for confirmation</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What does a 'Golden Cross' signal indicate?",
+                options: [
+                    { value: 'A', text: 'Bearish trend reversal' },
+                    { value: 'B', text: 'Bullish trend reversal' },
+                    { value: 'C', text: 'Sideways movement' }
+                ],
+                correct: 'B',
+                explanation: "Correct! A Golden Cross occurs when a short-term MA crosses above a long-term MA, signaling potential bullish momentum."
+            }
+        },
+        'support-resistance': {
+            title: 'Support & Resistance',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Key Price Levels',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Support and Resistance</strong> are key price levels where buying or selling pressure emerges.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-up text-success"></i>
+                                    <span><strong>Support</strong> - Price level where buying interest emerges</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-down text-danger"></i>
+                                    <span><strong>Resistance</strong> - Price level where selling pressure appears</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-sync text-info"></i>
+                                    <span><strong>Role Reversal</strong> - Support becomes resistance and vice versa</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Identifying Levels',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Look for areas where price has bounced multiple times:</p>
+                            <div class="levels-example">
+                                <div class="price-action">
+                                    <div class="resistance-line">$50,000 Resistance</div>
+                                    <div class="price-bounces">📈📉📈📉</div>
+                                    <div class="support-line">$45,000 Support</div>
+                                </div>
+                            </div>
+                            <div class="insight-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p>The more times price bounces off a level, the stronger it becomes!</p>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Trading S&R Levels',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>S&R Trading Rules:</h4>
+                            <div class="strategy-grid">
+                                <div class="strategy-item">
+                                    <h5>🎯 Buy at Support</h5>
+                                    <p>Look for bounce confirmation with volume</p>
+                                </div>
+                                <div class="strategy-item">
+                                    <h5>🎯 Sell at Resistance</h5>
+                                    <p>Watch for rejection signals and reversal patterns</p>
+                                </div>
+                                <div class="strategy-item">
+                                    <h5>🚀 Breakout Trading</h5>
+                                    <p>Trade the break above resistance or below support</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What happens when a support level is broken?",
+                options: [
+                    { value: 'A', text: 'It becomes resistance' },
+                    { value: 'B', text: 'It becomes stronger support' },
+                    { value: 'C', text: 'Nothing changes' }
+                ],
+                correct: 'A',
+                explanation: "Correct! When support is broken, it often becomes resistance due to role reversal - traders who bought at that level may sell when price returns."
+            }
+        },
+        'candlestick-patterns': {
+            title: 'Candlestick Patterns',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Reading Candlesticks',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Candlesticks</strong> show open, high, low, and close prices in a visual format.</p>
+                            <div class="candlestick-anatomy">
+                                <div class="candle-parts">
+                                    <div class="wick-high">Upper Wick (High)</div>
+                                    <div class="body bullish">Body (Open to Close)</div>
+                                    <div class="wick-low">Lower Wick (Low)</div>
+                                </div>
+                            </div>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-square text-success"></i>
+                                    <span><strong>Green/White</strong> - Close > Open (Bullish)</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-square text-danger"></i>
+                                    <span><strong>Red/Black</strong> - Close < Open (Bearish)</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Key Patterns',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Important reversal patterns to know:</p>
+                            <div class="patterns-grid">
+                                <div class="pattern">
+                                    <h5>🔨 Hammer</h5>
+                                    <p>Bullish reversal at support</p>
+                                </div>
+                                <div class="pattern">
+                                    <h5>💫 Doji</h5>
+                                    <p>Indecision, potential reversal</p>
+                                </div>
+                                <div class="pattern">
+                                    <h5>🌟 Shooting Star</h5>
+                                    <p>Bearish reversal at resistance</p>
+                                </div>
+                                <div class="pattern">
+                                    <h5>🎯 Engulfing</h5>
+                                    <p>Strong reversal signal</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Pattern Trading',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Trading Candlestick Patterns:</h4>
+                            <div class="trading-rules">
+                                <div class="rule">
+                                    <h5>1. Context Matters</h5>
+                                    <p>Patterns work best at key S&R levels</p>
+                                </div>
+                                <div class="rule">
+                                    <h5>2. Confirm with Volume</h5>
+                                    <p>Higher volume increases pattern reliability</p>
+                                </div>
+                                <div class="rule">
+                                    <h5>3. Wait for Confirmation</h5>
+                                    <p>Don't trade on the pattern candle alone</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "A Hammer candlestick pattern is most reliable when it appears:",
+                options: [
+                    { value: 'A', text: 'At resistance levels' },
+                    { value: 'B', text: 'At support levels after a downtrend' },
+                    { value: 'C', text: 'In the middle of a trend' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Hammer patterns are bullish reversal signals that work best when they appear at support levels after a downtrend, indicating potential buying interest."
+            }
+        },
+        'market-orders': {
+            title: 'Market Orders',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Types of Orders',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Market Orders</strong> are instructions to buy or sell immediately at the current market price.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-bolt text-warning"></i>
+                                    <span><strong>Market Order</strong> - Execute immediately at best available price</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-target text-primary"></i>
+                                    <span><strong>Limit Order</strong> - Execute only at specified price or better</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-shield-alt text-success"></i>
+                                    <span><strong>Stop Order</strong> - Trigger when price reaches stop level</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Order Execution',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Understanding how different orders work:</p>
+                            <div class="order-examples">
+                                <div class="order-type">
+                                    <h5>⚡ Market Buy</h5>
+                                    <p>BTC = $45,000 → Buy immediately</p>
+                                </div>
+                                <div class="order-type">
+                                    <h5>🎯 Limit Buy</h5>
+                                    <p>Set: $44,000 → Wait for price drop</p>
+                                </div>
+                                <div class="order-type">
+                                    <h5>🛡️ Stop Loss</h5>
+                                    <p>Set: $43,000 → Sell if price falls</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Order Strategy',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>When to Use Each Order:</h4>
+                            <div class="strategy-grid">
+                                <div class="strategy-item">
+                                    <h5>Market Orders</h5>
+                                    <p>• Fast execution needed<br>• High liquidity markets<br>• Small position sizes</p>
+                                </div>
+                                <div class="strategy-item">
+                                    <h5>Limit Orders</h5>
+                                    <p>• Better price control<br>• Large positions<br>• Patient trading</p>
+                                </div>
+                                <div class="strategy-item">
+                                    <h5>Stop Orders</h5>
+                                    <p>• Risk management<br>• Breakout trading<br>• Automated exits</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "When is a limit order most useful?",
+                options: [
+                    { value: 'A', text: 'When you need immediate execution' },
+                    { value: 'B', text: 'When you want better price control' },
+                    { value: 'C', text: 'When setting stop losses' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Limit orders give you better price control by only executing at your specified price or better, though execution isn't guaranteed."
+            }
+        },
+        'macd-signals': {
+            title: 'MACD Signals',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Understanding MACD',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>MACD</strong> (Moving Average Convergence Divergence) shows the relationship between two moving averages.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-chart-line text-primary"></i>
+                                    <span><strong>MACD Line</strong> - 12 EMA minus 26 EMA</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-minus text-secondary"></i>
+                                    <span><strong>Signal Line</strong> - 9 EMA of MACD line</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-chart-bar text-info"></i>
+                                    <span><strong>Histogram</strong> - MACD minus Signal line</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'MACD Crossovers',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Key MACD signals to watch for:</p>
+                            <div class="macd-signals">
+                                <div class="signal bullish">
+                                    <h5>🟢 Bullish Crossover</h5>
+                                    <p>MACD crosses above Signal line</p>
+                                </div>
+                                <div class="signal bearish">
+                                    <h5>🔴 Bearish Crossover</h5>
+                                    <p>MACD crosses below Signal line</p>
+                                </div>
+                                <div class="signal divergence">
+                                    <h5>⚠️ Divergence</h5>
+                                    <p>Price and MACD move in opposite directions</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'MACD Trading',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>MACD Trading Rules:</h4>
+                            <ul>
+                                <li>Buy when MACD crosses above signal line</li>
+                                <li>Sell when MACD crosses below signal line</li>
+                                <li>Watch for divergences at key levels</li>
+                                <li>Confirm with price action and volume</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What does a bullish MACD crossover indicate?",
+                options: [
+                    { value: 'A', text: 'MACD crosses below signal line' },
+                    { value: 'B', text: 'MACD crosses above signal line' },
+                    { value: 'C', text: 'Histogram turns negative' }
+                ],
+                correct: 'B',
+                explanation: "Correct! A bullish MACD crossover occurs when the MACD line crosses above the signal line, suggesting upward momentum."
+            }
+        },
+        'bollinger-bands': {
+            title: 'Bollinger Bands',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Band Components',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Bollinger Bands</strong> consist of a moving average with upper and lower bands based on standard deviation.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-minus text-primary"></i>
+                                    <span><strong>Middle Band</strong> - 20-period Simple Moving Average</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-up text-success"></i>
+                                    <span><strong>Upper Band</strong> - Middle Band + (2 × Standard Deviation)</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-down text-danger"></i>
+                                    <span><strong>Lower Band</strong> - Middle Band - (2 × Standard Deviation)</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Band Behavior',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>How bands react to market conditions:</p>
+                            <div class="band-conditions">
+                                <div class="condition">
+                                    <h5>📈 High Volatility</h5>
+                                    <p>Bands expand wider</p>
+                                </div>
+                                <div class="condition">
+                                    <h5>📊 Low Volatility</h5>
+                                    <p>Bands contract (squeeze)</p>
+                                </div>
+                                <div class="condition">
+                                    <h5>🎯 Price Touches Bands</h5>
+                                    <p>Potential reversal signal</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Bollinger Band Trading',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Trading Strategies:</h4>
+                            <div class="strategy-list">
+                                <div class="strategy">
+                                    <h5>Band Bounce</h5>
+                                    <p>Buy at lower band, sell at upper band in ranging markets</p>
+                                </div>
+                                <div class="strategy">
+                                    <h5>Band Squeeze</h5>
+                                    <p>Prepare for breakout when bands contract</p>
+                                </div>
+                                <div class="strategy">
+                                    <h5>Band Walk</h5>
+                                    <p>Strong trends can "walk" along one band</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What does a Bollinger Band squeeze typically indicate?",
+                options: [
+                    { value: 'A', text: 'High volatility period' },
+                    { value: 'B', text: 'Low volatility, potential breakout coming' },
+                    { value: 'C', text: 'Strong trending market' }
+                ],
+                correct: 'B',
+                explanation: "Correct! A Bollinger Band squeeze (bands contracting) indicates low volatility and often precedes a significant price breakout."
+            }
+        },
+        'fibonacci-retracements': {
+            title: 'Fibonacci Retracements',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Fibonacci Levels',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Fibonacci Retracements</strong> use mathematical ratios to identify potential support and resistance levels.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-percentage text-primary"></i>
+                                    <span><strong>Key Levels:</strong> 23.6%, 38.2%, 50%, 61.8%, 78.6%</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-chart-area text-success"></i>
+                                    <span><strong>Golden Ratio:</strong> 61.8% is the most significant level</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrows-alt-v text-info"></i>
+                                    <span><strong>Usage:</strong> Draw from swing high to swing low</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Fib Application',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>How to apply Fibonacci retracements:</p>
+                            <div class="fib-example">
+                                <div class="price-move">
+                                    <h5>📈 Uptrend Retracement</h5>
+                                    <p>High: $50,000 → Low: $40,000</p>
+                                    <div class="fib-levels">
+                                        <div class="level">61.8%: $46,180</div>
+                                        <div class="level">50.0%: $45,000</div>
+                                        <div class="level">38.2%: $43,820</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Fibonacci Trading',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Trading with Fibonacci:</h4>
+                            <ul>
+                                <li>Look for bounces at key Fib levels</li>
+                                <li>61.8% level often provides strong support/resistance</li>
+                                <li>Combine with other indicators for confirmation</li>
+                                <li>Use for entry points and profit targets</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "Which Fibonacci level is considered the most significant?",
+                options: [
+                    { value: 'A', text: '50%' },
+                    { value: 'B', text: '61.8%' },
+                    { value: 'C', text: '38.2%' }
+                ],
+                correct: 'B',
+                explanation: "Correct! The 61.8% level (golden ratio) is considered the most significant Fibonacci retracement level for support and resistance."
+            }
+        },
+        'trend-analysis': {
+            title: 'Trend Analysis',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Identifying Trends',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Trend Analysis</strong> helps identify the overall direction of price movement.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-up text-success"></i>
+                                    <span><strong>Uptrend:</strong> Higher highs and higher lows</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-down text-danger"></i>
+                                    <span><strong>Downtrend:</strong> Lower highs and lower lows</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrows-alt-h text-warning"></i>
+                                    <span><strong>Sideways:</strong> Horizontal price movement</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Trend Lines',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Drawing and using trend lines:</p>
+                            <div class="trend-examples">
+                                <div class="trend-type">
+                                    <h5>📈 Uptrend Line</h5>
+                                    <p>Connect swing lows - acts as support</p>
+                                </div>
+                                <div class="trend-type">
+                                    <h5>📉 Downtrend Line</h5>
+                                    <p>Connect swing highs - acts as resistance</p>
+                                </div>
+                                <div class="trend-type">
+                                    <h5>🔄 Channel Lines</h5>
+                                    <p>Parallel lines containing price action</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Trend Trading',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Trading with Trends:</h4>
+                            <div class="trend-rules">
+                                <div class="rule">
+                                    <h5>"The Trend is Your Friend"</h5>
+                                    <p>Trade in the direction of the main trend</p>
+                                </div>
+                                <div class="rule">
+                                    <h5>Trend Breaks</h5>
+                                    <p>Watch for trend line breaks as reversal signals</p>
+                                </div>
+                                <div class="rule">
+                                    <h5>Multiple Timeframes</h5>
+                                    <p>Check trends on different time horizons</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What characterizes a healthy uptrend?",
+                options: [
+                    { value: 'A', text: 'Lower highs and lower lows' },
+                    { value: 'B', text: 'Higher highs and higher lows' },
+                    { value: 'C', text: 'Horizontal price movement' }
+                ],
+                correct: 'B',
+                explanation: "Correct! A healthy uptrend is characterized by a series of higher highs and higher lows, showing consistent upward momentum."
+            }
+        },
+        'risk-management': {
+            title: 'Risk Management',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Risk Fundamentals',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Risk Management</strong> is the most important aspect of successful trading.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-percentage text-danger"></i>
+                                    <span><strong>2% Rule:</strong> Never risk more than 2% per trade</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-shield-alt text-success"></i>
+                                    <span><strong>Stop Loss:</strong> Always have an exit plan</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-balance-scale text-primary"></i>
+                                    <span><strong>Risk/Reward:</strong> Aim for 1:2 or better ratios</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Position Sizing',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Calculate proper position size:</p>
+                            <div class="position-calc">
+                                <div class="calc-example">
+                                    <h5>Example Calculation:</h5>
+                                    <p>Account: $10,000</p>
+                                    <p>Risk per trade: 2% = $200</p>
+                                    <p>Stop loss: $100 (5% from entry)</p>
+                                    <p>Position size: $200 ÷ 0.05 = $4,000</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Risk Rules',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Essential Risk Rules:</h4>
+                            <ul>
+                                <li>Never risk more than you can afford to lose</li>
+                                <li>Use stop losses on every trade</li>
+                                <li>Diversify across different assets</li>
+                                <li>Keep a trading journal</li>
+                                <li>Don't revenge trade after losses</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What is the recommended maximum risk per trade?",
+                options: [
+                    { value: 'A', text: '5% of account' },
+                    { value: 'B', text: '2% of account' },
+                    { value: 'C', text: '10% of account' }
+                ],
+                correct: 'B',
+                explanation: "Correct! The 2% rule suggests never risking more than 2% of your account on a single trade to preserve capital long-term."
+            }
+        },
+        'portfolio-theory': {
+            title: 'Portfolio Theory',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Diversification Basics',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Portfolio Theory</strong> focuses on optimizing risk and return through diversification.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-chart-pie text-primary"></i>
+                                    <span><strong>Diversification:</strong> Don't put all eggs in one basket</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-link text-warning"></i>
+                                    <span><strong>Correlation:</strong> How assets move together</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-balance-scale text-success"></i>
+                                    <span><strong>Risk/Return:</strong> Balance between safety and profit</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Asset Allocation',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Sample crypto portfolio allocation:</p>
+                            <div class="portfolio-example">
+                                <div class="allocation">
+                                    <h5>🟡 Bitcoin (BTC): 40%</h5>
+                                    <p>Store of value, lowest volatility</p>
+                                </div>
+                                <div class="allocation">
+                                    <h5>🔷 Ethereum (ETH): 30%</h5>
+                                    <p>Smart contracts, DeFi ecosystem</p>
+                                </div>
+                                <div class="allocation">
+                                    <h5>🎯 Altcoins: 20%</h5>
+                                    <p>Higher risk/reward potential</p>
+                                </div>
+                                <div class="allocation">
+                                    <h5>💰 Stablecoins: 10%</h5>
+                                    <p>Liquidity and stability</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Portfolio Management',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Portfolio Best Practices:</h4>
+                            <ul>
+                                <li>Rebalance regularly (monthly/quarterly)</li>
+                                <li>Consider correlation between assets</li>
+                                <li>Don't over-diversify (5-10 positions max)</li>
+                                <li>Adjust allocation based on market conditions</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What is the main benefit of portfolio diversification?",
+                options: [
+                    { value: 'A', text: 'Higher returns' },
+                    { value: 'B', text: 'Reduced overall risk' },
+                    { value: 'C', text: 'Lower fees' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Diversification's main benefit is reducing overall portfolio risk by spreading investments across different assets."
+            }
+        },
+        'market-psychology': {
+            title: 'Market Psychology',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Emotions in Trading',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Market Psychology</strong> studies how emotions and cognitive biases affect trading decisions.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-heart text-danger"></i>
+                                    <span><strong>Fear:</strong> Causes panic selling and missed opportunities</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-dollar-sign text-success"></i>
+                                    <span><strong>Greed:</strong> Leads to overtrading and excessive risk</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-brain text-primary"></i>
+                                    <span><strong>FOMO:</strong> Fear of missing out drives bad decisions</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Market Cycles',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Emotional cycle of market participants:</p>
+                            <div class="emotion-cycle">
+                                <div class="cycle-stage">
+                                    <h5>😊 Optimism</h5>
+                                    <p>Prices rising, confidence building</p>
+                                </div>
+                                <div class="cycle-stage">
+                                    <h5>🤑 Euphoria</h5>
+                                    <p>Peak excitement, maximum risk</p>
+                                </div>
+                                <div class="cycle-stage">
+                                    <h5>😰 Panic</h5>
+                                    <p>Prices falling, fear dominates</p>
+                                </div>
+                                <div class="cycle-stage">
+                                    <h5>😔 Despair</h5>
+                                    <p>Bottom reached, opportunity emerges</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Psychological Discipline',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Managing Trading Psychology:</h4>
+                            <ul>
+                                <li>Stick to your trading plan</li>
+                                <li>Use position sizing to control emotions</li>
+                                <li>Take breaks after big wins/losses</li>
+                                <li>Keep a trading journal</li>
+                                <li>Practice meditation and mindfulness</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "When do most traders make their worst decisions?",
+                options: [
+                    { value: 'A', text: 'During calm markets' },
+                    { value: 'B', text: 'At emotional extremes (fear/greed)' },
+                    { value: 'C', text: 'During lunch breaks' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Traders typically make their worst decisions when emotions are at extremes - either in panic (fear) or euphoria (greed)."
+            }
+        },
+        'options-trading': {
+            title: 'Options Trading',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Options Basics',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Options</strong> give you the right (not obligation) to buy or sell an asset at a specific price.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-up text-success"></i>
+                                    <span><strong>Call Options:</strong> Right to buy at strike price</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-arrow-down text-danger"></i>
+                                    <span><strong>Put Options:</strong> Right to sell at strike price</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-calendar text-warning"></i>
+                                    <span><strong>Expiration:</strong> Options have time limits</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Options Strategies',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Basic options strategies:</p>
+                            <div class="options-strategies">
+                                <div class="strategy">
+                                    <h5>📈 Long Call</h5>
+                                    <p>Bullish strategy, limited risk</p>
+                                </div>
+                                <div class="strategy">
+                                    <h5>📉 Long Put</h5>
+                                    <p>Bearish strategy, portfolio protection</p>
+                                </div>
+                                <div class="strategy">
+                                    <h5>🎯 Covered Call</h5>
+                                    <p>Income generation on holdings</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Options Greeks',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Understanding the Greeks:</h4>
+                            <ul>
+                                <li><strong>Delta:</strong> Price sensitivity to underlying</li>
+                                <li><strong>Gamma:</strong> Rate of change of delta</li>
+                                <li><strong>Theta:</strong> Time decay effect</li>
+                                <li><strong>Vega:</strong> Volatility sensitivity</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What does a call option give you the right to do?",
+                options: [
+                    { value: 'A', text: 'Sell at strike price' },
+                    { value: 'B', text: 'Buy at strike price' },
+                    { value: 'C', text: 'Cancel the contract' }
+                ],
+                correct: 'B',
+                explanation: "Correct! A call option gives you the right (not obligation) to buy the underlying asset at the strike price before expiration."
+            }
+        },
+        'defi-strategies': {
+            title: 'DeFi Strategies',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'DeFi Fundamentals',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>DeFi</strong> (Decentralized Finance) recreates traditional financial services on blockchain.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-swimming-pool text-primary"></i>
+                                    <span><strong>Liquidity Pools:</strong> Provide liquidity, earn fees</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-seedling text-success"></i>
+                                    <span><strong>Yield Farming:</strong> Earn rewards by staking tokens</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-coins text-warning"></i>
+                                    <span><strong>Governance Tokens:</strong> Vote on protocol changes</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'DeFi Protocols',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Major DeFi categories:</p>
+                            <div class="defi-protocols">
+                                <div class="protocol">
+                                    <h5>🔄 DEXs</h5>
+                                    <p>Uniswap, SushiSwap - Token swapping</p>
+                                </div>
+                                <div class="protocol">
+                                    <h5>🏦 Lending</h5>
+                                    <p>Aave, Compound - Borrow/Lend crypto</p>
+                                </div>
+                                <div class="protocol">
+                                    <h5>📊 Derivatives</h5>
+                                    <p>dYdX, Synthetix - Synthetic assets</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'DeFi Risks',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>DeFi Risk Management:</h4>
+                            <ul>
+                                <li><strong>Smart Contract Risk:</strong> Code vulnerabilities</li>
+                                <li><strong>Impermanent Loss:</strong> LP token value changes</li>
+                                <li><strong>Rug Pulls:</strong> Malicious project exits</li>
+                                <li><strong>High Gas Fees:</strong> Ethereum network costs</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What is impermanent loss in DeFi?",
+                options: [
+                    { value: 'A', text: 'Temporary network downtime' },
+                    { value: 'B', text: 'Loss from providing liquidity vs holding tokens' },
+                    { value: 'C', text: 'Smart contract bugs' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Impermanent loss occurs when the value of tokens in a liquidity pool changes compared to just holding them."
+            }
+        },
+        'arbitrage-trading': {
+            title: 'Arbitrage Trading',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Arbitrage Basics',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Arbitrage</strong> exploits price differences of the same asset across different markets.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-exchange-alt text-primary"></i>
+                                    <span><strong>Cross-Exchange:</strong> Price differences between exchanges</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-clock text-warning"></i>
+                                    <span><strong>Speed:</strong> Opportunities disappear quickly</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-robot text-success"></i>
+                                    <span><strong>Automation:</strong> Bots execute faster than humans</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Arbitrage Example',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Simple arbitrage opportunity:</p>
+                            <div class="arbitrage-example">
+                                <div class="exchange">
+                                    <h5>Exchange A</h5>
+                                    <p>BTC: $45,000</p>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="exchange">
+                                    <h5>Exchange B</h5>
+                                    <p>BTC: $45,200</p>
+                                </div>
+                                <div class="profit">
+                                    <h5>💰 Profit: $200</h5>
+                                    <p>Buy on A, sell on B</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Arbitrage Challenges',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Arbitrage Considerations:</h4>
+                            <ul>
+                                <li>Transaction fees reduce profits</li>
+                                <li>Transfer times between exchanges</li>
+                                <li>Slippage on large orders</li>
+                                <li>Regulatory restrictions</li>
+                                <li>Capital requirements for both exchanges</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What is the main challenge with arbitrage trading?",
+                options: [
+                    { value: 'A', text: 'High risk of losses' },
+                    { value: 'B', text: 'Opportunities disappear quickly' },
+                    { value: 'C', text: 'Requires advanced analysis' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Arbitrage opportunities are quickly eliminated by other traders and bots, making speed crucial for success."
+            }
+        },
+        'algorithmic-trading': {
+            title: 'Algorithmic Trading',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Algo Trading Basics',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Algorithmic Trading</strong> uses computer programs to execute trades based on predefined rules.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-code text-primary"></i>
+                                    <span><strong>Automation:</strong> Remove emotions from trading</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-tachometer-alt text-success"></i>
+                                    <span><strong>Speed:</strong> Execute trades in milliseconds</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-chart-bar text-info"></i>
+                                    <span><strong>Backtesting:</strong> Test strategies on historical data</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Trading Strategies',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Common algorithmic strategies:</p>
+                            <div class="algo-strategies">
+                                <div class="strategy">
+                                    <h5>📈 Trend Following</h5>
+                                    <p>Follow moving average crossovers</p>
+                                </div>
+                                <div class="strategy">
+                                    <h5>🔄 Mean Reversion</h5>
+                                    <p>Trade when price deviates from average</p>
+                                </div>
+                                <div class="strategy">
+                                    <h5>⚡ Market Making</h5>
+                                    <p>Provide liquidity, profit from spreads</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Building Algorithms',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Algorithm Development Process:</h4>
+                            <ul>
+                                <li>Define clear entry/exit rules</li>
+                                <li>Backtest on historical data</li>
+                                <li>Implement risk management</li>
+                                <li>Paper trade before going live</li>
+                                <li>Monitor and adjust performance</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What is the main advantage of algorithmic trading?",
+                options: [
+                    { value: 'A', text: 'Guaranteed profits' },
+                    { value: 'B', text: 'Removes emotions and executes consistently' },
+                    { value: 'C', text: 'Requires no market knowledge' }
+                ],
+                correct: 'B',
+                explanation: "Correct! Algorithmic trading's main advantage is removing emotional decision-making and executing trades consistently based on predefined rules."
+            }
+        },
+        'derivatives-trading': {
+            title: 'Derivatives Trading',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Derivatives Overview',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Derivatives</strong> are financial contracts whose value derives from underlying assets.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-calendar-alt text-primary"></i>
+                                    <span><strong>Futures:</strong> Agreement to buy/sell at future date</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-infinity text-warning"></i>
+                                    <span><strong>Perpetuals:</strong> Futures without expiration</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-chart-line text-success"></i>
+                                    <span><strong>Leverage:</strong> Control large positions with small capital</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Leverage Example',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>How leverage amplifies gains and losses:</p>
+                            <div class="leverage-example">
+                                <div class="scenario">
+                                    <h5>10x Leverage Trade</h5>
+                                    <p>Capital: $1,000</p>
+                                    <p>Position: $10,000</p>
+                                    <p>5% price move = $500 profit/loss</p>
+                                    <p>= 50% account impact!</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Derivatives Risks',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Key Risks to Understand:</h4>
+                            <ul>
+                                <li><strong>Liquidation:</strong> Forced position closure</li>
+                                <li><strong>Funding Rates:</strong> Cost of holding perpetuals</li>
+                                <li><strong>Slippage:</strong> Price impact on large orders</li>
+                                <li><strong>Counterparty Risk:</strong> Exchange reliability</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What is the main risk of using high leverage?",
+                options: [
+                    { value: 'A', text: 'Higher fees' },
+                    { value: 'B', text: 'Amplified losses and liquidation risk' },
+                    { value: 'C', text: 'Slower execution' }
+                ],
+                correct: 'B',
+                explanation: "Correct! High leverage amplifies both gains and losses, significantly increasing the risk of liquidation if the market moves against you."
+            }
+        },
+        'advanced-risk-models': {
+            title: 'Advanced Risk Models',
+            cards: [
+                {
+                    type: 'content',
+                    title: 'Risk Measurement',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p><strong>Advanced Risk Models</strong> quantify and manage portfolio risk using mathematical methods.</p>
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <i class="fas fa-chart-area text-danger"></i>
+                                    <span><strong>VaR:</strong> Value at Risk - potential loss over time period</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-dice text-primary"></i>
+                                    <span><strong>Monte Carlo:</strong> Simulate thousands of scenarios</span>
+                                </div>
+                                <div class="key-point">
+                                    <i class="fas fa-calculator text-success"></i>
+                                    <span><strong>Sharpe Ratio:</strong> Risk-adjusted return measure</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'visual',
+                    title: 'Risk Metrics',
+                    content: `
+                        <div class="lesson-card-content">
+                            <p>Key risk measurements:</p>
+                            <div class="risk-metrics">
+                                <div class="metric">
+                                    <h5>📊 VaR (95%)</h5>
+                                    <p>Maximum expected loss 95% of the time</p>
+                                </div>
+                                <div class="metric">
+                                    <h5>📈 Beta</h5>
+                                    <p>Correlation with market movements</p>
+                                </div>
+                                <div class="metric">
+                                    <h5>📉 Maximum Drawdown</h5>
+                                    <p>Largest peak-to-trough decline</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    type: 'strategy',
+                    title: 'Portfolio Optimization',
+                    content: `
+                        <div class="lesson-card-content">
+                            <h4>Advanced Portfolio Techniques:</h4>
+                            <ul>
+                                <li>Modern Portfolio Theory (MPT)</li>
+                                <li>Black-Litterman model</li>
+                                <li>Risk parity allocation</li>
+                                <li>Dynamic hedging strategies</li>
+                                <li>Stress testing scenarios</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            ],
+            quiz: {
+                question: "What does VaR (Value at Risk) measure?",
+                options: [
+                    { value: 'A', text: 'Expected returns' },
+                    { value: 'B', text: 'Potential loss over a specific time period' },
+                    { value: 'C', text: 'Trading volume' }
+                ],
+                correct: 'B',
+                explanation: "Correct! VaR measures the potential loss in portfolio value over a specific time period at a given confidence level."
             }
         }
     };
