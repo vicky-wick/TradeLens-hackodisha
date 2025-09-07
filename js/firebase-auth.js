@@ -87,6 +87,13 @@ function syncFirebaseUserToStorage(user) {
         userNameElement.textContent = userData.displayName;
     }
     
+    // Show/hide login/logout buttons based on auth state
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    if (loginBtn) loginBtn.style.display = 'none';
+    if (logoutBtn) logoutBtn.style.display = 'inline-block';
+    
     return userData;
 }
 
@@ -136,6 +143,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Check if user is authenticated
     const user = await checkAuthStatus();
+    
+    // Show/hide buttons based on auth state
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    if (user) {
+        // User is logged in
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'inline-block';
+    } else {
+        // User is not logged in
+        if (loginBtn) loginBtn.style.display = 'inline-block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+    }
     
     // Update logout buttons to use Firebase logout
     const logoutButtons = document.querySelectorAll('[onclick*="logout"]');
