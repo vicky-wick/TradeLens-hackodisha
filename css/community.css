@@ -1,90 +1,122 @@
-/* Community-specific styles for improved card alignment */
+/* TradeLens Community - Brutalist Design */
+@import url('./brutalist-design.css');
 
 .main-content {
-    margin-top: 4rem;
-    padding: 2rem 0;
-    min-height: calc(100vh - 4rem);
-    background: var(--bg-primary);
+    margin-top: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: var(--brutal-white);
+    font-family: var(--brutal-font);
 }
 
-/* Community Header */
+/* Brutalist Community Header */
 .community-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: var(--radius-lg);
-    color: white;
+    background: var(--brutal-black);
+    border: var(--brutal-border-thick);
+    box-shadow: var(--brutal-shadow-xl);
+    padding: 40px;
+    margin: 0 0 40px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.community-header::before {
+    content: "COMMUNITY";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.1);
+    transform: rotate(15deg);
+    z-index: 1;
 }
 
 .header-content h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--brutal-white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 15px 0;
+    position: relative;
+    z-index: 2;
+    text-shadow: 4px 4px 0 var(--brutal-red);
 }
 
 .header-content p {
-    opacity: 0.9;
-    font-size: 1.125rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--brutal-yellow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
 }
 
-/* Community Stats */
+/* Brutalist Community Stats */
 .community-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-    align-items: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 20px;
+    padding: 0;
 }
 
-.community-stats .stat-item {
-    background: white;
-    padding: 2rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+.stat-item {
+    background: var(--brutal-yellow);
+    border: var(--brutal-border-thick);
+    box-shadow: var(--brutal-shadow);
+    padding: 25px;
+    text-align: center;
     transition: all 0.3s;
-    height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
-.community-stats .stat-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+.stat-item:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: var(--brutal-shadow-xl);
+    animation: brutal-pulse 0.5s;
 }
 
-.community-stats .stat-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.25rem;
-    flex-shrink: 0;
+.stat-item:nth-child(2) {
+    background: var(--brutal-green);
 }
 
-.community-stats .stat-content {
-    flex-grow: 1;
+.stat-item:nth-child(3) {
+    background: var(--brutal-blue);
+    color: var(--brutal-white);
 }
 
-.community-stats .stat-number {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
+.stat-item:nth-child(4) {
+    background: var(--brutal-pink);
 }
 
-.community-stats .stat-label {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    font-weight: 500;
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--brutal-black);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.stat-item:nth-child(3) .stat-number {
+    color: var(--brutal-white);
+}
+
+.stat-label {
+    color: var(--brutal-black);
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-item:nth-child(3) .stat-label {
+    color: var(--brutal-white);
 }
 
 /* Feed Filters */
@@ -161,104 +193,143 @@
     border: 2px solid var(--border-color);
     border-radius: var(--radius-lg);
     cursor: pointer;
+    font-weight: 900;
+    font-family: var(--brutal-font);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
     transition: all 0.3s;
-    min-width: 120px;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.crypto-tab:last-child {
+    border-right: none;
 }
 
 .crypto-tab:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--primary-color);
+    background: var(--brutal-yellow);
+    transform: translateY(-3px);
+    z-index: 2;
+    box-shadow: 0 6px 0 var(--brutal-black);
 }
 
 .crypto-tab.active {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+    transform: translateY(-3px);
+    z-index: 2;
+    box-shadow: 0 6px 0 var(--brutal-black);
 }
 
-.crypto-tab i {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-}
-
-.crypto-tab span {
-    font-weight: 600;
-    font-size: 0.875rem;
+.crypto-tab .crypto-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 0;
+    border: 2px solid var(--brutal-black);
+    background: var(--brutal-white);
 }
 
 .crypto-tab .post-count {
-    background: rgba(0, 0, 0, 0.1);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    font-weight: 700;
-    min-width: 24px;
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    padding: 4px 10px;
+    border: 2px solid var(--brutal-black);
+    font-size: 0.8rem;
+    font-weight: 900;
+    min-width: 25px;
+    text-align: center;
 }
 
 .crypto-tab.active .post-count {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--brutal-white);
+    color: var(--brutal-black);
 }
 
 /* Trending Section */
 .trending-section {
-    background: white;
-    padding: 1.5rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
-    margin-bottom: 2rem;
+    margin: 30px 0;
+    padding: 25px;
+    background: var(--brutal-pink);
+    border: var(--brutal-border-thick);
+    box-shadow: var(--brutal-shadow-lg);
+    position: relative;
+    overflow: hidden;
 }
 
-.trending-header {
-    margin-bottom: 1rem;
+.trending-section::before {
+    content: "TRENDING";
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.1);
+    transform: rotate(-15deg);
+    z-index: 1;
 }
 
-.trending-header h3 {
-    color: var(--text-primary);
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.trending-header i {
-    color: #ff6b35;
-    margin-right: 0.5rem;
+.trending-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--brutal-black);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
 }
 
 .trending-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
 }
 
 .trending-tag {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-full);
-    font-size: 0.875rem;
-    font-weight: 500;
+    padding: 12px 20px;
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    border: var(--brutal-border);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
     cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
 }
 
 .trending-tag:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: translateY(-1px);
+    background: var(--brutal-yellow);
+    color: var(--brutal-black);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--brutal-black);
+}
+
+.trending-tag:nth-child(even):hover {
+    background: var(--brutal-cyan);
+    color: var(--brutal-black);
+}
+
+.trending-tag:nth-child(3n):hover {
+    background: var(--brutal-green);
+    color: var(--brutal-black);
 }
 
 .trending-tag.active {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
+    background: var(--brutal-red);
+    color: var(--brutal-white);
 }
 
 /* Feed Container */
@@ -276,27 +347,35 @@
     text-align: center;
 }
 
-/* Post Cards */
+/* Brutalist Post Cards */
 .feed-post {
-    background: white;
+    background: var(--brutal-white);
     padding: 0;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
+    border: var(--brutal-border-thick);
+    box-shadow: var(--brutal-shadow-lg);
     transition: all 0.3s;
     overflow: hidden;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.feed-post:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: var(--brutal-shadow-xl);
 }
 
 .post-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    transform: translate(-6px, -6px);
+    box-shadow: var(--brutal-shadow-xl);
 }
 
 .post-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 1.5rem 1rem;
+    padding: 20px;
+    background: var(--brutal-black);
+    border-bottom: var(--brutal-border);
 }
 
 .user-info {
@@ -337,22 +416,35 @@
 }
 
 .user-name {
-    font-weight: 600;
-    color: var(--text-primary);
+    font-weight: 900;
+    color: var(--brutal-white);
     display: flex;
     align-items: center;
-    margin-bottom: 0.25rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 0 var(--brutal-black);
 }
 
 .post-time {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
+    font-size: 0.9rem;
+    color: var(--brutal-black);
+    background: var(--brutal-yellow);
+    padding: 2px 6px;
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 2px solid var(--brutal-black);
 }
 
 .post-content {
-    padding: 0 1.5rem 1rem;
-    color: var(--text-primary);
-    line-height: 1.6;
+    padding: 25px;
+    color: var(--brutal-black);
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: var(--brutal-white);
+    text-shadow: none;
 }
 
 .post-meta {
@@ -485,58 +577,90 @@
 .post-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-secondary);
+    gap: 15px;
+    padding: 20px;
+    border-top: var(--brutal-border);
+    background: var(--brutal-black);
 }
 
 .action-btn {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--brutal-white);
+    border: var(--brutal-border);
     cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    color: var(--brutal-black);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: none;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .action-btn:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: translateY(-1px);
+    background: var(--brutal-yellow);
+    color: var(--brutal-black);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--brutal-white);
 }
 
 .action-btn.liked {
-    color: var(--danger-color);
-    border-color: var(--danger-color);
-    background: rgba(239, 68, 68, 0.1);
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+}
+
+.action-btn.liked:hover {
+    background: var(--brutal-pink);
+    color: var(--brutal-black);
 }
 
 .action-btn.prediction-btn {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
+    background: var(--brutal-blue);
+    color: var(--brutal-white);
+    border: var(--brutal-border);
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .action-btn.prediction-btn:hover {
-    background: var(--primary-dark);
+    background: var(--brutal-purple);
+    color: var(--brutal-white);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--brutal-black);
 }
 
+/* Brutalist Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
 
-/* Modal Styles */
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .post-modal-content,
 .comment-modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
+    background: var(--brutal-white);
+    padding: 30px;
+    border: var(--brutal-border-thick);
+    box-shadow: var(--brutal-shadow-xl);
     width: 90%;
     max-width: 600px;
     max-height: 80vh;
@@ -548,15 +672,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: var(--brutal-border);
+    background: var(--brutal-black);
+    margin: -30px -30px 25px -30px;
+    padding: 20px 30px;
 }
 
 .modal-header h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--brutal-white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .post-form {
@@ -577,13 +706,22 @@
 }
 
 .form-group textarea {
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-family: inherit;
+    padding: 15px;
+    border: var(--brutal-border);
+    font-family: var(--brutal-font);
     font-size: 1rem;
+    font-weight: 700;
     resize: vertical;
     min-height: 120px;
+    transition: all 0.3s;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    transform: scale(1.02);
+    box-shadow: var(--brutal-shadow);
 }
 
 .prediction-quick-add {
@@ -615,9 +753,9 @@
 .post-form .post-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 1rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
+    gap: 15px;
+    padding-top: 20px;
+    border-top: var(--brutal-border);
     background: transparent;
 }
 
@@ -648,20 +786,39 @@
     resize: none;
 }
 
-/* Loading State */
+/* Brutalist Loading State */
 .loading-state {
-    background: white;
-    padding: 4rem 2rem;
-    border-radius: var(--radius-lg);
+    background: var(--brutal-black);
+    padding: 60px 30px;
+    border: var(--brutal-border-thick);
     text-align: center;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
+    box-shadow: var(--brutal-shadow-xl);
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-state::before {
+    content: "LOADING";
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.1);
+    transform: rotate(-15deg);
+    z-index: 1;
 }
 
 .loading-state p {
-    color: var(--text-secondary);
-    margin-top: 1rem;
-    font-size: 1rem;
+    color: var(--brutal-white);
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
 }
 
 /* Empty Feed Styles */

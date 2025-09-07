@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - TradeLens</title>
+    <link rel="stylesheet" href="../css/brutalist-design.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/dashboard.css">
@@ -11,36 +12,37 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
+    <!-- Brutalist Navigation -->
+    <nav class="brutal-nav">
+        <div class="brutal-nav__container">
+            <a href="../index.html" class="brutal-nav__logo">
                 <i class="fas fa-chart-line"></i>
-                <span>TradeLens</span>
-            </div>
-
-            
-            <div class="nav-menu">
-                <a href="dashboard.html" class="nav-link active">Dashboard</a>
-                <a href="learning.html" class="nav-link">Learning</a>
-                <a href="kuma.html" class="nav-link">KUMA</a>
-                <a href="community.html" class="nav-link">Community</a>
-                <div class="user-menu">
-                    <span id="userName">Loading...</span>
-                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
-                </div>
-            </div>
+                TradeLens
+            </a>
+            <ul class="brutal-nav__menu">
+                <li><a href="dashboard.html" class="brutal-nav__link brutal-nav__link--active">Dashboard</a></li>
+                <li><a href="learning.html" class="brutal-nav__link">Learning</a></li>
+                <li><a href="kuma.html" class="brutal-nav__link">KUMA</a></li>
+                <li><a href="community.html" class="brutal-nav__link">Community</a></li>
+                <li>
+                    <div class="user-menu">
+                        <span id="userName" class="brutal-text brutal-text-white">Loading...</span>
+                        <a href="login.html" class="brutal-btn brutal-btn--primary" style="margin-right: 10px;">Login</a>
+                        <button class="brutal-btn brutal-btn--danger" onclick="logout()">Logout</button>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Welcome Section -->
+            <!-- Brutalist Welcome Section -->
             <section class="welcome-section">
-                <div class="welcome-card">
-                    <h1>Welcome back, <span id="userDisplayName">Trader</span>! 👋</h1>
-                    <p>Ready to continue your crypto trading journey?</p>
+                <div class="brutal-card" style="background: var(--brutal-black); color: var(--brutal-white); padding: 40px; margin: 20px;">
+                    <h1 class="brutal-title" style="color: var(--brutal-white); font-size: 2.5rem;">Welcome back, <span id="userDisplayName" style="color: var(--brutal-yellow);">Trader</span>! 💥</h1>
+                    <p class="brutal-text" style="color: var(--brutal-white); font-size: 1.2rem; text-transform: uppercase;">Ready to dominate your crypto trading journey?</p>
                 </div>
             </section>
 
@@ -175,7 +177,7 @@
     </main>
 
     <script src="../js/storage.js"></script>
-    <script src="../js/dashboard.js"></script>
+    <script src="../js/firebase-auth.js"></script>
     <script src="../js/bonney-widget.js"></script>
 </body>
 </html>

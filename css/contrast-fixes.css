@@ -1,0 +1,305 @@
+/* TradeLens Contrast Fixes - WCAG AA Compliance */
+
+/* Alert/Notification Styles */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border: var(--brutal-border);
+    box-shadow: var(--brutal-shadow);
+    font-family: var(--brutal-font);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 9999;
+    animation: brutal-slide-in 0.5s ease-out;
+    min-width: 250px;
+}
+
+.alert-success {
+    background: var(--brutal-green);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.alert-danger {
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.alert-warning {
+    background: var(--brutal-orange);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.alert-info {
+    background: var(--brutal-blue);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+/* Enhanced Form Contrast */
+.form-group label {
+    font-weight: 900;
+    color: var(--brutal-black);
+    background: var(--brutal-yellow);
+    padding: 4px 8px;
+    border: 2px solid var(--brutal-black);
+    display: inline-block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Navigation Link Contrast */
+.brutal-nav__link {
+    color: var(--brutal-white);
+    background: transparent;
+    text-shadow: 2px 2px 0 var(--brutal-black);
+}
+
+.brutal-nav__link:hover {
+    background: var(--brutal-white);
+    color: var(--brutal-black);
+    text-shadow: none;
+}
+
+/* Post Meta Information */
+.post-crypto {
+    background: var(--brutal-blue);
+    color: var(--brutal-white);
+    border: 2px solid var(--brutal-black);
+    padding: 4px 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.post-type {
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+    border: 2px solid var(--brutal-black);
+    padding: 4px 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.user-badge {
+    background: var(--brutal-orange);
+    color: var(--brutal-white);
+    border: 2px solid var(--brutal-black);
+    padding: 2px 6px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Post Tags */
+.post-tag {
+    background: var(--brutal-purple);
+    color: var(--brutal-white);
+    border: 2px solid var(--brutal-black);
+    padding: 4px 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.post-tag:hover {
+    background: var(--brutal-yellow);
+    color: var(--brutal-black);
+}
+
+/* Trending Tags */
+.trending-tag {
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    border: var(--brutal-border);
+    text-shadow: none;
+}
+
+.trending-tag:hover {
+    background: var(--brutal-yellow);
+    color: var(--brutal-black);
+    text-shadow: none;
+}
+
+/* Loading State Text */
+.loading-state p {
+    color: var(--brutal-white);
+    text-shadow: 2px 2px 0 var(--brutal-black);
+}
+
+/* Modal Header Text */
+.modal-header h2 {
+    color: var(--brutal-white);
+    text-shadow: 2px 2px 0 var(--brutal-red);
+}
+
+/* Stat Labels and Numbers */
+.stat-label {
+    color: var(--brutal-black);
+    text-shadow: none;
+    font-weight: 900;
+}
+
+.stat-number {
+    color: var(--brutal-black);
+    text-shadow: 2px 2px 0 var(--brutal-white);
+}
+
+/* Crypto Tab Contrast */
+.crypto-tab {
+    background: var(--brutal-white);
+    color: var(--brutal-black);
+    border: var(--brutal-border);
+}
+
+.crypto-tab:hover {
+    background: var(--brutal-yellow);
+    color: var(--brutal-black);
+}
+
+.crypto-tab.active {
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+}
+
+/* Enhanced Button Contrast */
+.brutal-btn--success {
+    background: var(--brutal-green);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.brutal-btn--danger {
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.brutal-btn--warning {
+    background: var(--brutal-orange);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+.brutal-btn--primary {
+    background: var(--brutal-blue);
+    color: var(--brutal-white);
+    border-color: var(--brutal-black);
+}
+
+/* Menu Button Contrast */
+.menu-btn {
+    background: var(--brutal-yellow);
+    color: var(--brutal-black);
+    border: 2px solid var(--brutal-black);
+    padding: 8px;
+}
+
+.menu-btn:hover {
+    background: var(--brutal-red);
+    color: var(--brutal-white);
+}
+
+/* User Avatar Contrast */
+.user-avatar {
+    background: var(--brutal-blue);
+    color: var(--brutal-white);
+    border: 3px solid var(--brutal-black);
+    text-shadow: 2px 2px 0 var(--brutal-black);
+}
+
+/* Prediction Card Contrast */
+.prediction-card-mini {
+    background: var(--brutal-gray-light);
+    border: var(--brutal-border);
+    color: var(--brutal-black);
+}
+
+.prediction-direction.up {
+    color: var(--brutal-green);
+    font-weight: 900;
+    text-shadow: 1px 1px 0 var(--brutal-white);
+}
+
+.prediction-direction.down {
+    color: var(--brutal-red);
+    font-weight: 900;
+    text-shadow: 1px 1px 0 var(--brutal-white);
+}
+
+/* Level Badge Contrast */
+.level-badge {
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    border: var(--brutal-border);
+    padding: 10px 15px;
+}
+
+.level-number {
+    color: var(--brutal-yellow);
+    font-weight: 900;
+    text-shadow: 2px 2px 0 var(--brutal-black);
+}
+
+.level-text {
+    color: var(--brutal-white);
+    text-shadow: 1px 1px 0 var(--brutal-black);
+}
+
+/* Progress Bar Contrast */
+.progress-fill {
+    background: var(--brutal-green);
+    border-right: 2px solid var(--brutal-black);
+}
+
+/* Comment Input Contrast */
+.comment-input-group textarea {
+    background: var(--brutal-white);
+    color: var(--brutal-black);
+    border: var(--brutal-border);
+    font-weight: 700;
+}
+
+.comment-input-group textarea:focus {
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+}
+
+/* Empty Feed Contrast */
+.empty-feed {
+    background: var(--brutal-white);
+    color: var(--brutal-black);
+    border: var(--brutal-border-thick);
+}
+
+.empty-feed h3 {
+    color: var(--brutal-black);
+    text-shadow: none;
+}
+
+.empty-feed p {
+    color: var(--brutal-gray-dark);
+}
+
+/* Mobile Responsive Contrast */
+@media (max-width: 768px) {
+    .alert {
+        right: 10px;
+        left: 10px;
+        top: 10px;
+    }
+    
+    .post-meta {
+        gap: 8px;
+    }
+    
+    .post-tag, .post-crypto, .post-type {
+        font-size: 0.75rem;
+        padding: 3px 6px;
+    }
+}

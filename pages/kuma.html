@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KUMA - TradeLens</title>
+    <link rel="stylesheet" href="../css/brutalist-design.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/bonney-widget.css">
@@ -18,14 +19,14 @@
             overflow: hidden;
         }
 
-        .navbar {
+        .brutal-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(28, 28, 28, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--brutal-black);
+            border-bottom: var(--brutal-border-thick);
         }
 
         .kuma-container {
@@ -135,11 +136,14 @@
                 <a href="dashboard.html" class="nav-link">Dashboard</a>
                 <a href="learning.html" class="nav-link">Learning</a>
                 <a href="community.html" class="nav-link">Community</a>
-                <a href="kuma.html" class="nav-link active">KUMA</a>
-                <div class="user-menu">
-                    <span id="userName">Loading...</span>
-                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
-                </div>
+                <a href="kuma.html" class="nav-link">KUMA</a>
+                <li>
+                    <div class="user-menu">
+                        <span id="userName" class="brutal-text brutal-text-white">Loading...</span>
+                        <a href="login.html" class="brutal-btn brutal-btn--primary" style="margin-right: 10px;">Login</a>
+                        <button class="brutal-btn brutal-btn--danger" onclick="logout()">Logout</button>
+                    </div>
+                </li>
             </div>
         </div>
     </nav>

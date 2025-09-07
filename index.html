@@ -4,25 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradeLens - The Duolingo of Crypto Trading</title>
+    <link rel="stylesheet" href="css/brutalist-design.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/bonney-widget.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
+    <!-- Brutalist Navigation -->
+    <nav class="brutal-nav">
+        <div class="brutal-nav__container">
+            <a href="#" class="brutal-nav__logo">
                 <i class="fas fa-chart-line"></i>
-                <span>TradeLens</span>
-            </div>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#demo" class="nav-link">Demo</a>
-                <a href="pages/kuma.html" class="nav-link">KUMA</a>
-                <button class="btn btn-primary" onclick="showAuth()">Get Started</button>
-            </div>
+                TradeLens
+            </a>
+            <ul class="brutal-nav__menu">
+                <li><a href="#features" class="brutal-nav__link">Features</a></li>
+                <li><a href="#demo" class="brutal-nav__link">Demo</a></li>
+                <li><a href="pages/kuma.html" class="brutal-nav__link">KUMA</a></li>
+                <li><a href="pages/login.html" class="brutal-btn brutal-btn--primary">Get Started</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -32,19 +33,19 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    The <span class="gradient-text">Duolingo</span> of Crypto Trading
+                <h1 class="brutal-title" style="font-size: 4rem; text-align: center; margin-bottom: 30px;">
+                    The <span style="color: var(--brutal-red); text-shadow: 4px 4px 0 var(--brutal-black);">DUOLINGO</span> of Crypto Trading
                 </h1>
-                <p class="hero-subtitle">
+                <p class="brutal-text" style="font-size: 1.5rem; text-align: center; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">
                     Learn by predicting, compare with an AI mentor, and improve through 
                     gamified risk-aware coaching with verifiable achievement badges.
                 </p>
-                <div class="hero-cta">
-                    <button class="btn btn-primary btn-large" onclick="showAuth()">
+                <div class="hero-cta" style="text-align: center;">
+                    <a href="pages/signup.html" class="brutal-btn brutal-btn--success" style="padding: 20px 40px; font-size: 1.2rem; margin-right: 20px; text-decoration: none; display: inline-block;">
                         <i class="fas fa-rocket"></i>
                         Start Learning
-                    </button>
-                    <button class="btn btn-secondary btn-large" onclick="showDemo()">
+                    </a>
+                    <button class="brutal-btn brutal-btn--outline" style="padding: 20px 40px; font-size: 1.2rem;" onclick="showDemo()">
                         <i class="fas fa-play"></i>
                         Watch Demo
                     </button>
@@ -239,10 +240,10 @@
                 <h2>Ready to Master Crypto Trading?</h2>
                 <p>Join thousands of traders learning with AI-powered guidance</p>
                 <div class="cta-buttons">
-                    <button class="btn btn-primary btn-large" onclick="showAuth()">
+                    <a href="pages/signup.html" class="btn btn-primary btn-large" style="text-decoration: none; display: inline-block;">
                         <i class="fas fa-rocket"></i>
                         Start Your Journey
-                    </button>
+                    </a>
                     <button class="btn btn-secondary btn-large" onclick="window.location.href='pages/learning.html'">
                         <i class="fas fa-book-open"></i>
                         Explore Lessons
@@ -263,36 +264,31 @@
             </div>
             
             <div id="signup" class="tab-content active">
-                <form class="auth-form" onsubmit="handleSignup(event)">
-                    <input type="text" placeholder="Display Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <select required>
-                        <option value="">Learning Goal</option>
-                        <option value="basics">Learn Basics</option>
-                        <option value="swing">Swing Trading</option>
-                        <option value="pro">Professional</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
-                </form>
-                <div class="auth-divider">OR</div>
-                <button class="btn btn-wallet" onclick="connectWallet()">
-                    <i class="fas fa-wallet"></i>
-                    Connect Wallet
-                </button>
+                <p style="text-align: center; margin-bottom: 20px;">Create your TradeLens account to start learning!</p>
+                <div class="auth-buttons">
+                    <a href="pages/signup.html" class="btn btn-primary btn-full" style="text-decoration: none; display: block; margin-bottom: 15px;">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up with Email
+                    </a>
+                    <a href="pages/login.html" class="btn btn-secondary btn-full" style="text-decoration: none; display: block;">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Already have an account? Login
+                    </a>
+                </div>
             </div>
             
             <div id="login" class="tab-content">
-                <form class="auth-form" onsubmit="handleLogin(event)">
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <button type="submit" class="btn btn-primary btn-full">Login</button>
-                </form>
-                <div class="auth-divider">OR</div>
-                <button class="btn btn-wallet" onclick="connectWallet()">
-                    <i class="fas fa-wallet"></i>
-                    Connect Wallet
-                </button>
+                <p style="text-align: center; margin-bottom: 20px;">Welcome back to TradeLens!</p>
+                <div class="auth-buttons">
+                    <a href="pages/login.html" class="btn btn-primary btn-full" style="text-decoration: none; display: block; margin-bottom: 15px;">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login with Email
+                    </a>
+                    <a href="pages/signup.html" class="btn btn-secondary btn-full" style="text-decoration: none; display: block;">
+                        <i class="fas fa-user-plus"></i>
+                        Need an account? Sign Up
+                    </a>
+                </div>
             </div>
         </div>
     </div>

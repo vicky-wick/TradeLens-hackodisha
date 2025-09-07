@@ -4,12 +4,8 @@ let currentUser = null;
 let currentPostId = null;
 let communityData = null;
 
-// Initialize community feed when DOM loads
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCommunity();
-});
-
-async function initializeCommunity() {
+// Initialize community data when page loads
+document.addEventListener('DOMContentLoaded', async function() {
     // Check authentication
     currentUser = TradeLensStorage.getStoredUser();
     
@@ -41,7 +37,18 @@ async function initializeCommunity() {
     
     // Load community feed
     loadCommunityFeed();
-}
+    
+    // Add event listeners for share buttons
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.share-btn')) {
+            const shareBtn = e.target.closest('.share-btn');
+            const postId = shareBtn.getAttribute('data-post-id');
+            console.log('Share button clicked via event listener:', postId);
+            sharePost(postId);
+        }
+    });
+});
+
 
 function loadCommunityFeed() {
     const posts = communityData.getFilteredPosts();
@@ -179,7 +186,7 @@ function createPostHTML(post) {
                     <i class="fas fa-comment"></i>
                     <span>${post.comments ? post.comments.length : 0}</span>
                 </button>
-                <button class="action-btn" onclick="sharePost('${post.id}')">
+                <button class="action-btn share-btn" data-post-id="${post.id}" onclick="sharePost('${post.id}')">
                     <i class="fas fa-share"></i>
                     <span>Share</span>
                 </button>
@@ -450,9 +457,68 @@ function updatePostForm() {
 }
 
 function sharePost(postId) {
-    // Mock share functionality
-    navigator.clipboard.writeText(`Check out this prediction on TradeLens! Post ID: ${postId}`);
-    showAlert('Post link copied to clipboard!', 'info');
+    console.log('Share button clicked for post:', postId);
+    
+    const post = communityData.posts.find(p => p.id === postId);
+    if (!post) {
+        console.error('Post not found:', postId);
+        showAlert('Post not found!', 'danger');
+        return;
+    }
+    
+    console.log('Found post:', post);
+    
+    const shareText = `Check out this ${post.cryptoSymbol} ${post.postType} on TradeLens: "${post.content.substring(0, 100)}..." - ${post.userName}`;
+    
+    console.log('Share text:', shareText);
+    
+    // Always use fallback for now to ensure it works
+    fallbackShare(shareText);
+}
+
+function fallbackShare(text) {
+    console.log('Fallback share called with text:', text);
+    
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            console.log('Successfully copied to clipboard');
+            showAlert('Post link copied to clipboard!', 'success');
+        }).catch((error) => {
+            console.error('Clipboard write failed:', error);
+            // Try alternative method
+            tryLegacyCopy(text);
+        });
+    } else {
+        console.log('Clipboard API not available, trying legacy method');
+        tryLegacyCopy(text);
+    }
+}
+
+function tryLegacyCopy(text) {
+    try {
+        // Create a temporary textarea element
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, 99999); // For mobile devices
+        
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        if (successful) {
+            console.log('Legacy copy successful');
+            showAlert('Post link copied to clipboard!', 'success');
+        } else {
+            console.log('Legacy copy failed');
+            showAlert('Unable to copy - please manually copy the text', 'warning');
+        }
+    } catch (error) {
+        console.error('Legacy copy error:', error);
+        showAlert('Sharing feature temporarily unavailable', 'warning');
+    }
 }
 
 function viewPredictionDetails(postId) {

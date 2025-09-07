@@ -154,8 +154,8 @@ MIT License - see LICENSE file for details
 
 ## 📞 Contact
 
-- **Team**: TradeLens Hackathon Team
-- **Email**: [your-email@example.com]
+- **Team**: Power Rangers
+- **Email**: vadhikari2023@gift.edu.in
 - **Demo**: Available for live demonstration
 
 ---

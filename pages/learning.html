@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Hub - TradeLens</title>
+    <link rel="stylesheet" href="../css/brutalist-design.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/bonney-widget.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
+    <!-- Brutalist Navigation -->
+    <nav class="brutal-nav">
+        <div class="brutal-nav__container">
+            <a href="../index.html" class="brutal-nav__logo">
                 <i class="fas fa-chart-line"></i>
-                <span>TradeLens</span>
-            </div>
-            <div class="nav-menu">
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                <a href="learning.html" class="nav-link active">Learning</a>
-                <a href="kuma.html" class="nav-link">KUMA</a>
-                <a href="community.html" class="nav-link">Community</a>
-                <div class="user-menu">
-                    <span id="userName">Loading...</span>
-                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
-                </div>
-            </div>
+                TradeLens
+            </a>
+            <ul class="brutal-nav__menu">
+                <li><a href="dashboard.html" class="brutal-nav__link">Dashboard</a></li>
+                <li><a href="learning.html" class="brutal-nav__link brutal-nav__link--active">Learning</a></li>
+                <li><a href="kuma.html" class="brutal-nav__link">KUMA</a></li>
+                <li><a href="community.html" class="brutal-nav__link">Community</a></li>
+                <li>
+                    <div class="user-menu">
+                        <span id="userName" class="brutal-text brutal-text-white">Loading...</span>
+                        <a href="login.html" class="brutal-btn brutal-btn--primary" style="margin-right: 10px;">Login</a>
+                        <button class="brutal-btn brutal-btn--danger" onclick="logout()">Logout</button>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -46,12 +50,6 @@
                     <div class="level-badge">
                         <span class="level-number">1</span>
                         <span class="level-text">Beginner</span>
-                    </div>
-                    <div class="overall-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="overallProgress" style="width: 20%"></div>
-                        </div>
-                        <span class="progress-text">2/10 lessons completed</span>
                     </div>
                 </div>
             </section>
@@ -571,7 +569,8 @@
     </div>
 
     <script src="../js/storage.js"></script>
-    <script src="../js/learning.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/firebase-auth.js"></script>
     <script src="../js/bonney-widget.js"></script>
 </body>
 </html>

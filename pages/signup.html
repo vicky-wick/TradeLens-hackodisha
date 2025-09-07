@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - TradeLens</title>
+    <link rel="stylesheet" href="../css/brutalist-design.css">
+    <link rel="stylesheet" href="../css/brutal-enhancements.css">
+    <link rel="stylesheet" href="../css/contrast-fixes.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .signup-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--brutal-bg);
+            padding: 20px;
+        }
+        
+        .signup-card {
+            background: var(--brutal-white);
+            border: var(--brutal-border-thick);
+            box-shadow: var(--brutal-shadow-xl);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+        
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .signup-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--brutal-black);
+        }
+        
+        .signup-header p {
+            color: var(--brutal-gray);
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--brutal-black);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: var(--brutal-border);
+            background: var(--brutal-white);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--brutal-blue);
+            box-shadow: 3px 3px 0 var(--brutal-blue);
+            transform: translate(-2px, -2px);
+        }
+        
+        .signup-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--brutal-green);
+            color: var(--brutal-black);
+            border: var(--brutal-border);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+        
+        .signup-btn:hover {
+            background: var(--brutal-yellow);
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0 var(--brutal-black);
+        }
+        
+        .signup-btn:disabled {
+            background: var(--brutal-gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--brutal-black);
+        }
+        
+        .divider span {
+            background: var(--brutal-white);
+            padding: 0 15px;
+            font-weight: 600;
+        }
+        
+        .google-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--brutal-white);
+            color: var(--brutal-black);
+            border: var(--brutal-border);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .google-btn:hover {
+            background: var(--brutal-yellow);
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0 var(--brutal-black);
+        }
+        
+        .error-message {
+            background: var(--brutal-red);
+            color: var(--brutal-white);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: var(--brutal-border);
+            display: none;
+        }
+        
+        .success-message {
+            background: var(--brutal-green);
+            color: var(--brutal-black);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: var(--brutal-border);
+            display: none;
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--brutal-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .back-link:hover {
+            color: var(--brutal-purple);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .login-link a {
+            color: var(--brutal-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            color: var(--brutal-purple);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--brutal-gray);
+            border-top: 3px solid var(--brutal-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+    
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="signup-header">
+                <h1><i class="fas fa-chart-line"></i> TradeLens</h1>
+                <p>Join thousands of traders learning to trade smarter.</p>
+            </div>
+            
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Creating your account...</p>
+            </div>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="displayName">Display Name</label>
+                    <input type="text" id="displayName" class="form-input" required placeholder="Enter your display name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-input" required placeholder="Enter your password (min 6 characters)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-input" required placeholder="Confirm your password">
+                </div>
+                
+                <button type="submit" id="signupBtn" class="signup-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            
+            <button id="googleSignUpBtn" class="google-btn">
+                <i class="fab fa-google"></i>
+                Sign up with Google
+            </button>
+            
+            <div class="login-link">
+                <p>Already have an account? <a href="login.html">Sign in here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithPopup, 
+            GoogleAuthProvider,
+            updateProfile,
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCeDbDt_qj1vPAwxJNjdHNQ4wVHWStXd5c",
+            authDomain: "tradelens-ho5.firebaseapp.com",
+            projectId: "tradelens-ho5",
+            storageBucket: "tradelens-ho5.firebasestorage.app",
+            messagingSenderId: "549096774863",
+            appId: "1:549096774863:web:d32a5ada8d3706b6f6abba"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // DOM elements
+        const signupForm = document.getElementById('signupForm');
+        const googleSignUpBtn = document.getElementById('googleSignUpBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const loading = document.getElementById('loading');
+        const signupBtn = document.getElementById('signupBtn');
+
+        // Show/hide messages
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        function hideMessages() {
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+
+        function showLoading() {
+            loading.style.display = 'block';
+            signupBtn.disabled = true;
+            googleSignUpBtn.disabled = true;
+        }
+
+        function hideLoading() {
+            loading.style.display = 'none';
+            signupBtn.disabled = false;
+            googleSignUpBtn.disabled = false;
+        }
+
+        // Store user data in localStorage (compatible with existing system)
+        function storeUserData(user, displayName = null) {
+            const userData = {
+                id: user.uid,
+                displayName: displayName || user.displayName || user.email.split('@')[0],
+                email: user.email,
+                photoURL: user.photoURL,
+                joinedAt: new Date().toISOString(),
+                traderHealthScore: 50,
+                level: 1,
+                experience: 0,
+                achievements: [],
+                firebaseUser: true
+            };
+            
+            localStorage.setItem('tradeLensUser', JSON.stringify(userData));
+            return userData;
+        }
+
+        // Handle successful authentication
+        function handleAuthSuccess(user, displayName = null) {
+            const userData = storeUserData(user, displayName);
+            showSuccess(`Welcome to TradeLens, ${userData.displayName}!`);
+            
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+
+        // Email/Password Sign Up
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessages();
+
+            const displayName = document.getElementById('displayName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showError('Passwords do not match.');
+                return;
+            }
+
+            // Validate password length
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters long.');
+                return;
+            }
+
+            showLoading();
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // Update the user's display name
+                await updateProfile(userCredential.user, {
+                    displayName: displayName
+                });
+
+                handleAuthSuccess(userCredential.user, displayName);
+            } catch (error) {
+                hideLoading();
+                let errorMsg = 'Account creation failed. Please try again.';
+                
+                switch (error.code) {
+                    case 'auth/email-already-in-use':
+                        errorMsg = 'An account with this email already exists.';
+                        break;
+                    case 'auth/invalid-email':
+                        errorMsg = 'Please enter a valid email address.';
+                        break;
+                    case 'auth/weak-password':
+                        errorMsg = 'Password is too weak. Please choose a stronger password.';
+                        break;
+                }
+                
+                showError(errorMsg);
+            }
+        });
+
+        // Google Sign Up
+        googleSignUpBtn.addEventListener('click', async () => {
+            hideMessages();
+            showLoading();
+
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                handleAuthSuccess(result.user);
+            } catch (error) {
+                hideLoading();
+                let errorMsg = 'Google sign-up failed. Please try again.';
+                
+                if (error.code === 'auth/popup-closed-by-user') {
+                    errorMsg = 'Sign-up was cancelled.';
+                } else if (error.code === 'auth/account-exists-with-different-credential') {
+                    errorMsg = 'An account with this email already exists. Please sign in instead.';
+                }
+                
+                showError(errorMsg);
+            }
+        });
+
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        // Make auth available globally for other scripts
+        window.firebaseAuth = auth;
+    </script>
+</body>
+</html>
