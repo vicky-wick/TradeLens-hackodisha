@@ -273,6 +273,14 @@
             <div class="login-link">
                 <p>Already have an account? <a href="login.html">Sign in here</a></p>
             </div>
+            
+            <!-- Auto-login after signup -->
+            <script>
+                // Auto-redirect new users to login after successful signup
+                function redirectToLogin() {
+                    window.location.href = 'login.html?message=Account created successfully! Please sign in.';
+                }
+            </script>
         </div>
     </div>
 
@@ -367,7 +375,10 @@
             showSuccess(`Welcome to TradeLens, ${userData.displayName}!`);
             
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                // Check if user came from a specific page, otherwise go to dashboard
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirect = urlParams.get('redirect') || 'dashboard.html';
+                window.location.href = redirect;
             }, 1500);
         }
 

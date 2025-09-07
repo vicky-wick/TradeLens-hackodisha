@@ -33,11 +33,12 @@ async function initFirebaseAuth() {
             } else {
                 // User is signed out, check if we should redirect
                 const currentPath = window.location.pathname;
-                const protectedPaths = ['/pages/dashboard.html', '/pages/community.html', '/pages/learning.html'];
+                const protectedPaths = ['/pages/dashboard.html', '/pages/learning.html'];
                 
                 if (protectedPaths.some(path => currentPath.includes(path))) {
                     // Redirect to login if on protected page
-                    window.location.href = '../pages/login.html';
+                    const currentPage = currentPath.split('/').pop();
+                    window.location.href = `login.html?redirect=${currentPage}`;
                 }
             }
         });

@@ -9,13 +9,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Check authentication
     currentUser = TradeLensStorage.getStoredUser();
     
-    if (!currentUser) {
-        window.location.href = '../index.html';
-        return;
-    }
+    // Allow access to community page without authentication
+    // if (!currentUser) {
+    //     window.location.href = 'login.html?redirect=community.html';
+    //     return;
+    // }
     
     // Load user profile
-    document.getElementById('userName').textContent = currentUser.displayName;
+    if (currentUser) {
+        document.getElementById('userName').textContent = currentUser.displayName;
+    } else {
+        document.getElementById('userName').textContent = 'Guest';
+    }
     
     // Show loading state
     const feedContainer = document.getElementById('feedPosts');
