@@ -49,6 +49,7 @@ let lessonData = {};
 // Initialize learning hub when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeLearning();
+    setupModalEventListeners();
 });
 
 function initializeLearning() {
@@ -1726,7 +1727,7 @@ function openLesson(lessonId) {
         }
         
         document.getElementById('lessonTitle').textContent = lesson.title;
-        document.getElementById('lessonModal').style.display = 'block';
+        document.getElementById('lessonModal').classList.add('show');
         
         loadLessonCard(0);
         hidePageLoader();
@@ -1734,9 +1735,49 @@ function openLesson(lessonId) {
 }
 
 function closeLessonModal() {
-    document.getElementById('lessonModal').classList.remove('show');
+    const modal = document.getElementById('lessonModal');
+    modal.classList.remove('show');
     currentLesson = null;
     currentCard = 0;
+    
+    // Reset modal content
+    document.getElementById('lessonCards').innerHTML = '';
+    document.getElementById('lessonProgress').style.width = '0%';
+    document.getElementById('cardCounter').textContent = '1 / 1';
+}
+
+function setupModalEventListeners() {
+    // Close modal when clicking outside of it
+    const lessonModal = document.getElementById('lessonModal');
+    const quizModal = document.getElementById('quizModal');
+    
+    if (lessonModal) {
+        lessonModal.addEventListener('click', function(e) {
+            if (e.target === lessonModal) {
+                closeLessonModal();
+            }
+        });
+    }
+    
+    if (quizModal) {
+        quizModal.addEventListener('click', function(e) {
+            if (e.target === quizModal) {
+                closeQuizModal();
+            }
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (lessonModal && lessonModal.classList.contains('show')) {
+                closeLessonModal();
+            }
+            if (quizModal && quizModal.classList.contains('show')) {
+                closeQuizModal();
+            }
+        }
+    });
 }
 
 function loadLessonCard() {
@@ -2212,8 +2253,9 @@ const learningStyles = `
     padding: 1.5rem 2rem;
     border-top: 1px solid var(--border-color);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .card-counter {
