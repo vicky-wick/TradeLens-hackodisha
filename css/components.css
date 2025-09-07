@@ -71,6 +71,7 @@
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    align-items: stretch;
 }
 
 /* Brutalist Lesson Cards */
@@ -84,6 +85,9 @@
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .lesson-card:hover {
@@ -189,6 +193,7 @@
     border-bottom: 2px solid #000;
     padding-bottom: 1rem;
     font-weight: 600;
+    flex-grow: 1;
 }
 
 .lesson-card.completed .lesson-card__message {
@@ -243,7 +248,8 @@
 }
 
 .lesson-card__actions {
-    margin-top: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
 }
 
 .lesson-card__button {
@@ -1072,7 +1078,8 @@
 }
 
 .lesson-card__actions {
-    margin-top: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
 }
 
 .lesson-card__button {

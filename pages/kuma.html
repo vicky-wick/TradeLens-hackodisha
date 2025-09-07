@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUMA - TradeLens</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/bonney-widget.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* KUMA-specific styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #1c1c1c;
+            overflow: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .kuma-container {
+            position: fixed;
+            top: 70px; /* Account for navbar height */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1c1c1c;
+        }
+
+        .kuma-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #1c1c1c;
+        }
+
+        .fallback-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            z-index: 10;
+        }
+
+        .fallback-message h2 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .fallback-message p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .fallback-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #00d4ff;
+            color: #1c1c1c;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .fallback-btn:hover {
+            background: #00b8e6;
+            transform: translateY(-2px);
+        }
+
+        /* Loading animation */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1c1c1c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-top: 3px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #ffffff;
+            margin-top: 1rem;
+            font-size: 16px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .kuma-container {
+                top: 60px; /* Smaller navbar on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="learning.html" class="nav-link">Learning</a>
+                <a href="community.html" class="nav-link">Community</a>
+                <a href="kuma.html" class="nav-link active">KUMA</a>
+                <div class="user-menu">
+                    <span id="userName">Loading...</span>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- KUMA Container -->
+    <div class="kuma-container">
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div style="text-align: center;">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Loading KUMA...</div>
+            </div>
+        </div>
+
+        <!-- Fallback message (hidden by default) -->
+        <div class="fallback-message" id="fallbackMessage" style="display: none;">
+            <h2><i class="fas fa-robot"></i> KUMA AI Assistant</h2>
+            <p>If KUMA does not load properly, you can open it in a new tab.</p>
+            <a href="https://zr0s41mf-8501.inc1.devtunnels.ms/" target="_blank" class="fallback-btn">
+                <i class="fas fa-external-link-alt"></i>
+                Open in New Tab
+            </a>
+        </div>
+
+        <!-- KUMA iframe -->
+        <iframe 
+            id="kumaIframe"
+            class="kuma-iframe"
+            src="https://zr0s41mf-8501.inc1.devtunnels.ms/"
+            title="KUMA AI Assistant"
+            allow="microphone; camera; fullscreen"
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/bonney-widget.js"></script>
+    <script>
+        // Handle iframe loading
+        const iframe = document.getElementById('kumaIframe');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const fallbackMessage = document.getElementById('fallbackMessage');
+        let loadTimeout;
+
+        // Show fallback after 10 seconds if iframe doesn't load
+        loadTimeout = setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            fallbackMessage.style.display = 'block';
+        }, 10000);
+
+        // Hide loading when iframe loads successfully
+        iframe.onload = function() {
+            clearTimeout(loadTimeout);
+            loadingOverlay.style.display = 'none';
+        };
+
+        // Handle iframe load errors
+        iframe.onerror = function() {
+            clearTimeout(loadTimeout);
+            loadingOverlay.style.display = 'none';
+            fallbackMessage.style.display = 'block';
+        };
+
+        // Initialize user data
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = getUserData();
+            if (userData && userData.displayName) {
+                document.getElementById('userName').textContent = userData.displayName;
+            }
+        });
+
+        // Logout function
+        function logout() {
+            clearUserData();
+            window.location.href = '../index.html';
+        }
+
+        // Get user data from storage
+        function getUserData() {
+            try {
+                return JSON.parse(localStorage.getItem('tradelens_user'));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // Clear user data
+        function clearUserData() {
+            localStorage.removeItem('tradelens_user');
+        }
+    </script>
+</body>
+</html>
