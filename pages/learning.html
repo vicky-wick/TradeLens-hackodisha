@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub - TradeLens</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/bonney-widget.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="learning.html" class="nav-link active">Learning</a>
+                <a href="kuma.html" class="nav-link">KUMA</a>
+                <a href="community.html" class="nav-link">Community</a>
+                <div class="user-menu">
+                    <span id="userName">Loading...</span>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Learning Hub Header -->
+            <section class="learning-header">
+                <div class="header-content">
+                    <h1><i class="fas fa-graduation-cap"></i> Learning Hub</h1>
+                    <p>Master crypto trading through interactive lessons and hands-on practice</p>
+                </div>
+                <div class="progress-overview">
+                    <div class="level-badge">
+                        <span class="level-number">1</span>
+                        <span class="level-text">Beginner</span>
+                    </div>
+                    <div class="overall-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="overallProgress" style="width: 20%"></div>
+                        </div>
+                        <span class="progress-text">2/10 lessons completed</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="learningLoader" class="content-loader hidden">
+                <div class="loading-container">
+                    <div class="loader"></div>
+                    <div class="loading-text">Loading your learning path...</div>
+                </div>
+            </div>
+
+            <!-- Learning Path Categories -->
+            <section id="learningContent" class="learning-categories">
+                <!-- Beginner Level -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-seedling"></i> Beginner Level</h2>
+                        <p>Master the fundamentals of crypto trading</p>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 28%"></div>
+                            </div>
+                            <span>2/7 completed</span>
+                        </div>
+                    </div>
+                    <div class="lesson-grid">
+                        <div class="lesson-card completed" onclick="openLesson('crypto-basics')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">1. Crypto Fundamentals</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                What is cryptocurrency and blockchain technology
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 8 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Review Lesson</button>
+                            </div>
+                            <div class="lesson-card__score">95%</div>
+                        </div>
+
+                        <div class="lesson-card completed" onclick="openLesson('rsi-basics')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">2. RSI Basics</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Learn the fundamentals of Relative Strength Index
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 5 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Review Lesson</button>
+                            </div>
+                            <div class="lesson-card__score">92%</div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('volume-analysis')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">3. Volume Analysis</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Understanding volume indicators and their significance
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 7 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('moving-averages')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">4. Moving Averages</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Simple and exponential moving averages explained
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 6 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('support-resistance')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">5. Support & Resistance</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Identifying key price levels and breakouts
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 8 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('candlestick-patterns')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">6. Candlestick Patterns</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Reading price action through candlestick analysis
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 10 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('market-orders')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">7. Market Orders</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Types of orders and execution strategies
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 7 min</span>
+                                <span class="lesson-card__difficulty beginner">Beginner</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intermediate Level -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-chart-line"></i> Intermediate Level</h2>
+                        <p>Advanced technical analysis and trading strategies</p>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span>0/7 completed</span>
+                        </div>
+                    </div>
+                    <div class="lesson-grid">
+                        <div class="lesson-card available" onclick="openLesson('macd-signals')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">8. MACD Signals</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Moving Average Convergence Divergence patterns
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 8 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('bollinger-bands')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">9. Bollinger Bands</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Volatility and price channel analysis
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 6 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('fibonacci-retracements')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">10. Fibonacci Retracements</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Using Fibonacci levels for entry and exit points
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 9 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('trend-analysis')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">11. Trend Analysis</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Identifying and trading with market trends
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 10 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('risk-management')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">12. Risk Management</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Position sizing and stop-loss strategies
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 12 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('portfolio-theory')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">13. Portfolio Theory</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Diversification and correlation analysis
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 11 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('market-psychology')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">14. Market Psychology</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Understanding fear, greed, and market sentiment
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 9 min</span>
+                                <span class="lesson-card__difficulty intermediate">Intermediate</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Level -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-rocket"></i> Advanced Level</h2>
+                        <p>Professional trading strategies and advanced concepts</p>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span>0/6 completed</span>
+                        </div>
+                    </div>
+                    <div class="lesson-grid">
+                        <div class="lesson-card available" onclick="openLesson('options-trading')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">15. Options Trading</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Crypto options strategies and Greeks
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 15 min</span>
+                                <span class="lesson-card__difficulty advanced">Advanced</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('defi-strategies')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">16. DeFi Strategies</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Yield farming, liquidity mining, and DeFi protocols
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 18 min</span>
+                                <span class="lesson-card__difficulty advanced">Advanced</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('arbitrage-trading')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">17. Arbitrage Trading</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Cross-exchange and statistical arbitrage
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 14 min</span>
+                                <span class="lesson-card__difficulty advanced">Advanced</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('algorithmic-trading')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">18. Algorithmic Trading</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Building and backtesting trading algorithms
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 20 min</span>
+                                <span class="lesson-card__difficulty advanced">Advanced</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('derivatives-trading')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">19. Derivatives Trading</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                Futures, perpetuals, and advanced derivatives
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 16 min</span>
+                                <span class="lesson-card__difficulty advanced">Advanced</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card available" onclick="openLesson('advanced-risk-models')">
+                            <div class="lesson-card__header">
+                                <div class="lesson-card__icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="lesson-card__title">20. Advanced Risk Models</div>
+                            </div>
+                            <div class="lesson-card__message">
+                                VaR, Monte Carlo simulations, and portfolio optimization
+                            </div>
+                            <div class="lesson-card__meta">
+                                <span class="lesson-card__duration"><i class="fas fa-clock"></i> 22 min</span>
+                                <span class="lesson-card__difficulty advanced">Advanced</span>
+                            </div>
+                            <div class="lesson-card__actions">
+                                <button class="lesson-card__button">Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Page Loader -->
+    <div id="pageLoader" class="page-loader hidden">
+        <div class="loading-container">
+            <div class="loader"></div>
+            <div class="loading-text">Loading lesson content...</div>
+        </div>
+    </div>
+
+    <!-- Lesson Modal -->
+    <div id="lessonModal" class="modal">
+        <div class="lesson-modal-content">
+            <div class="lesson-header">
+                <h2 id="lessonTitle">RSI Basics</h2>
+                <button class="close-lesson" onclick="closeLessonModal()">&times;</button>
+            </div>
+            
+            <div class="lesson-progress-bar">
+                <div class="lesson-progress-fill" id="lessonProgress"></div>
+            </div>
+            
+            <div class="lesson-content-area">
+                <!-- Lesson cards will be dynamically inserted here -->
+                <div id="lessonCards"></div>
+            </div>
+            
+            <div class="lesson-navigation">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <span class="card-counter" id="cardCounter">1 / 3</span>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="quiz-modal-content">
+            <div class="quiz-header">
+                <h2><i class="fas fa-question-circle"></i> Knowledge Check</h2>
+            </div>
+            
+            <div class="quiz-content">
+                <div class="question-area">
+                    <h3 id="quizQuestion">If RSI = 78 and volume is falling, what's the likeliest short-term move?</h3>
+                    <div class="quiz-options" id="quizOptions">
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz" value="A">
+                            <span>A) Continue rising strongly</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz" value="B">
+                            <span>B) Short-term reversal more likely</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz" value="C">
+                            <span>C) No clear indication</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" onclick="submitQuiz()">Submit Answer</button>
+                </div>
+                
+                <div class="quiz-result" id="quizResult" style="display: none;">
+                    <!-- Quiz result will be shown here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/learning.js"></script>
+    <script src="../js/bonney-widget.js"></script>
+</body>
+</html>

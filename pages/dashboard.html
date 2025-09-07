@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TradeLens</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/bonney-widget.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="learning.html" class="nav-link">Learning</a>
+                <a href="kuma.html" class="nav-link">KUMA</a>
+                <a href="community.html" class="nav-link">Community</a>
+                <div class="user-menu">
+                    <span id="userName">Loading...</span>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-card">
+                    <h1>Welcome back, <span id="userDisplayName">Trader</span>! 👋</h1>
+                    <p>Ready to continue your crypto trading journey?</p>
+                </div>
+            </section>
+
+            <!-- Stats Overview -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Trader Health Score</h3>
+                        <div class="score-display">
+                            <span id="healthScore">75</span>
+                            <span class="score-max">/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="healthProgress"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Learning Progress</h3>
+                        <div class="score-display">
+                            <span id="learningProgress">2</span>
+                            <span class="score-max">/10 lessons</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="lessonProgress"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Prediction Accuracy</h3>
+                        <div class="score-display">
+                            <span id="predictionAccuracy">68</span>
+                            <span class="score-max">%</span>
+                        </div>
+                        <div class="accuracy-comparison">
+                            <span class="vs-ai">vs AI: <span id="aiComparison">+5%</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Badges Earned</h3>
+                        <div class="score-display">
+                            <span id="badgeCount">3</span>
+                            <span class="score-max">badges</span>
+                        </div>
+                        <div class="badge-preview" id="badgePreview">
+                            <span class="badge badge-success">RSI Master</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-grid">
+                    <a href="learning.html" class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>Continue Learning</h3>
+                        <p>Complete your next RSI lesson</p>
+                        <span class="action-badge">Level 1</span>
+                    </a>
+
+                    <a href="kuma.html" class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Chat with KUMA</h3>
+                        <p>Get AI-powered trading insights and analysis</p>
+                        <span class="action-badge">AI Assistant</span>
+                    </a>
+
+                    <a href="community.html" class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community Feed</h3>
+                        <p>See what other traders are predicting</p>
+                        <span class="action-badge">5 new posts</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="recent-activity">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- AI Mentor Insights -->
+            <section class="ai-insights">
+                <h2>AI Mentor Insights</h2>
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>Today's Market Insight</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p>Based on your recent predictions, you tend to underweight volume indicators. Consider focusing on volume analysis in your next lesson to improve accuracy by an estimated 12%.</p>
+                        <div class="insight-actions">
+                            <button class="btn btn-primary" onclick="goToVolumeLesson()">
+                                <i class="fas fa-play"></i>
+                                Start Volume Lesson
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/bonney-widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Feed - TradeLens</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="../css/bonney-widget.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="learning.html" class="nav-link">Learning</a>
+                <a href="kuma.html" class="nav-link">KUMA</a>
+                <a href="community.html" class="nav-link active">Community</a>
+                <div class="user-menu">
+                    <span id="userName">Loading...</span>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Community Header -->
+            <section class="community-header">
+                <div class="header-content">
+                    <h1><i class="fas fa-users"></i> Community Feed</h1>
+                    <p>Learn from other traders and share your insights</p>
+                </div>
+                <button class="btn btn-primary" onclick="showPostModal()">
+                    <i class="fas fa-plus"></i>
+                    Share Prediction
+                </button>
+            </section>
+
+            <!-- Community Stats -->
+            <section class="community-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">1,247</div>
+                        <div class="stat-label">Active Traders</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">3,891</div>
+                        <div class="stat-label">Predictions Today</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">68%</div>
+                        <div class="stat-label">Avg Accuracy</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">+12%</div>
+                        <div class="stat-label">vs AI Mentor</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Crypto Sections -->
+            <section class="crypto-sections">
+                <div class="crypto-tabs">
+                    <button class="crypto-tab active" onclick="filterByCrypto('ALL')" data-crypto="ALL">
+                        <i class="fas fa-globe"></i>
+                        <span>All Cryptos</span>
+                        <div class="post-count">156</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('BTC')" data-crypto="BTC">
+                        <i class="fab fa-bitcoin"></i>
+                        <span>Bitcoin</span>
+                        <div class="post-count">45</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('ETH')" data-crypto="ETH">
+                        <i class="fab fa-ethereum"></i>
+                        <span>Ethereum</span>
+                        <div class="post-count">32</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('ADA')" data-crypto="ADA">
+                        <i class="fas fa-coins"></i>
+                        <span>Cardano</span>
+                        <div class="post-count">18</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('SOL')" data-crypto="SOL">
+                        <i class="fas fa-sun"></i>
+                        <span>Solana</span>
+                        <div class="post-count">12</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('DOT')" data-crypto="DOT">
+                        <i class="fas fa-circle"></i>
+                        <span>Polkadot</span>
+                        <div class="post-count">6</div>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Trending Topics -->
+            <section class="trending-section">
+                <div class="trending-header">
+                    <h3><i class="fas fa-fire"></i> Trending Topics</h3>
+                </div>
+                <div class="trending-tags">
+                    <span class="trending-tag" onclick="filterByTrend('BitcoinETF')">#BitcoinETF</span>
+                    <span class="trending-tag" onclick="filterByTrend('EthereumUpgrade')">#EthereumUpgrade</span>
+                    <span class="trending-tag" onclick="filterByTrend('DeFiSummer')">#DeFiSummer</span>
+                    <span class="trending-tag" onclick="filterByTrend('NFTMarket')">#NFTMarket</span>
+                    <span class="trending-tag" onclick="filterByTrend('Web3Gaming')">#Web3Gaming</span>
+                    <span class="trending-tag" onclick="filterByTrend('LayerTwo')">#LayerTwoSolutions</span>
+                </div>
+            </section>
+
+            <!-- Feed Filters -->
+            <section class="feed-filters">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterFeed('all')">All Posts</button>
+                    <button class="filter-tab" onclick="filterFeed('predictions')">Predictions</button>
+                    <button class="filter-tab" onclick="filterFeed('analysis')">Analysis</button>
+                    <button class="filter-tab" onclick="filterFeed('discussion')">Discussion</button>
+                    <button class="filter-tab" onclick="filterFeed('news')">News</button>
+                </div>
+                <div class="sort-options">
+                    <select id="sortSelect" onchange="sortFeed(this.value)">
+                        <option value="recent">Most Recent</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="accurate">Most Accurate</option>
+                        <option value="engagement">Most Engaging</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Community Feed -->
+            <section class="feed-container">
+                <div class="feed-posts" id="feedPosts">
+                    <!-- Posts will be dynamically loaded here -->
+                </div>
+                
+                <div class="load-more">
+                    <button class="btn btn-secondary" onclick="loadMorePosts()">
+                        <i class="fas fa-chevron-down"></i>
+                        Load More Posts
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div id="postModal" class="modal">
+        <div class="post-modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Share Your Prediction</h2>
+                <button class="close" onclick="hidePostModal()">&times;</button>
+            </div>
+            
+            <form class="post-form" onsubmit="createPost(event)">
+                <div class="form-group">
+                    <label>Post Type</label>
+                    <select id="postType" onchange="updatePostForm()">
+                        <option value="tweet">General Tweet</option>
+                        <option value="prediction">Price Prediction</option>
+                        <option value="analysis">Technical Analysis</option>
+                        <option value="discussion">Discussion Topic</option>
+                        <option value="news">News & Updates</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label id="contentLabel">What's on your mind?</label>
+                    <textarea id="postContent" placeholder="Share your thoughts, analysis, or insights with the community..." rows="4" required></textarea>
+                </div>
+                
+                <div class="prediction-quick-add">
+                    <h4>Quick Add Prediction:</h4>
+                    <div class="quick-prediction-form">
+                        <select id="quickAsset">
+                            <option value="">Select Asset</option>
+                            <option value="BTC">Bitcoin (BTC)</option>
+                            <option value="ETH">Ethereum (ETH)</option>
+                            <option value="ADA">Cardano (ADA)</option>
+                            <option value="SOL">Solana (SOL)</option>
+                            <option value="DOT">Polkadot (DOT)</option>
+                            <option value="MATIC">Polygon (MATIC)</option>
+                            <option value="LINK">Chainlink (LINK)</option>
+                            <option value="DOGE">Dogecoin (DOGE)</option>
+                        </select>
+                        <select id="quickDirection">
+                            <option value="">Direction</option>
+                            <option value="UP">UP ↗️</option>
+                            <option value="DOWN">DOWN ↘️</option>
+                            <option value="FLAT">SIDEWAYS ↔️</option>
+                        </select>
+                        <input type="number" id="quickConfidence" placeholder="Confidence %" min="10" max="100">
+                        <button type="button" class="btn btn-secondary" onclick="addQuickPrediction()">Add</button>
+                    </div>
+                </div>
+                
+                <div class="post-actions">
+                    <button type="button" class="btn btn-secondary" onclick="hidePostModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-share"></i>
+                        Share Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Comment Modal -->
+    <div id="commentModal" class="modal">
+        <div class="comment-modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-comments"></i> Comments</h2>
+                <button class="close" onclick="hideCommentModal()">&times;</button>
+            </div>
+            
+            <div class="comments-section" id="commentsSection">
+                <!-- Comments will be loaded here -->
+            </div>
+            
+            <form class="comment-form" onsubmit="addComment(event)">
+                <div class="comment-input-group">
+                    <textarea id="commentInput" placeholder="Add your comment..." rows="2" required></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/community-data.js"></script>
+    <script src="../js/community.js"></script>
+    <script src="../js/bonney-widget.js"></script>
+</body>
+</html>

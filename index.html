@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeLens - The Duolingo of Crypto Trading</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/bonney-widget.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>TradeLens</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="pages/kuma.html" class="nav-link">KUMA</a>
+                <button class="btn btn-primary" onclick="showAuth()">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    The <span class="gradient-text">Duolingo</span> of Crypto Trading
+                </h1>
+                <p class="hero-subtitle">
+                    Learn by predicting, compare with an AI mentor, and improve through 
+                    gamified risk-aware coaching with verifiable achievement badges.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary btn-large" onclick="showAuth()">
+                        <i class="fas fa-rocket"></i>
+                        Start Learning
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="showDemo()">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <span class="demo-title">Learn → Predict → Improve</span>
+                    </div>
+                    <div class="demo-content">
+                        <div class="step active">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Complete RSI Lesson</span>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Make BTC Prediction</span>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-robot"></i>
+                            <span>Compare with AI Mentor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Learning Hub</h3>
+                    <p>Interactive micro-lessons with quizzes and progress tracking</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>KUMA AI Assistant</h3>
+                    <p>Chat with our AI mentor for personalized trading insights</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>ML Mentor</h3>
+                    <p>AI predictions with explainable SHAP-based reasoning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Feed</h3>
+                    <p>Share predictions and learn from other traders</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Risk Dashboard</h3>
+                    <p>Trader Health Score and personalized risk metrics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>NFT Badges</h3>
+                    <p>Verifiable achievement credentials on blockchain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2 class="section-title">See TradeLens in Action</h2>
+            <div class="demo-flow">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <h3>Learn RSI Basics</h3>
+                    <p>Complete interactive 3-card lesson with quiz</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <h3>Make Prediction</h3>
+                    <p>Predict BTC movement with confidence & rationale</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <h3>Compare with AI</h3>
+                    <p>See ML mentor's prediction & explanation</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <h3>Improve & Share</h3>
+                    <p>Get risk score & share in community</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Interactive Lessons</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Learning Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Predictions Made</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Mentor Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Traders Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"TradeLens transformed my trading approach. The AI mentor helped me understand my mistakes and improve my strategy."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Chen</div>
+                            <div class="author-title">Crypto Trader</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The gamified learning approach made technical analysis fun. I went from beginner to confident trader in weeks."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Mike Rodriguez</div>
+                            <div class="author-title">Day Trader</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The risk dashboard and health score keep me disciplined. Best trading education platform I've used."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name">Alex Thompson</div>
+                            <div class="author-title">Portfolio Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Master Crypto Trading?</h2>
+                <p>Join thousands of traders learning with AI-powered guidance</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-large" onclick="showAuth()">
+                        <i class="fas fa-rocket"></i>
+                        Start Your Journey
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="window.location.href='pages/learning.html'">
+                        <i class="fas fa-book-open"></i>
+                        Explore Lessons
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideAuth()">&times;</span>
+            <h2>Join TradeLens</h2>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showTab('signup')">Sign Up</button>
+                <button class="tab-btn" onclick="showTab('login')">Login</button>
+            </div>
+            
+            <div id="signup" class="tab-content active">
+                <form class="auth-form" onsubmit="handleSignup(event)">
+                    <input type="text" placeholder="Display Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <select required>
+                        <option value="">Learning Goal</option>
+                        <option value="basics">Learn Basics</option>
+                        <option value="swing">Swing Trading</option>
+                        <option value="pro">Professional</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-divider">OR</div>
+                <button class="btn btn-wallet" onclick="connectWallet()">
+                    <i class="fas fa-wallet"></i>
+                    Connect Wallet
+                </button>
+            </div>
+            
+            <div id="login" class="tab-content">
+                <form class="auth-form" onsubmit="handleLogin(event)">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <div class="auth-divider">OR</div>
+                <button class="btn btn-wallet" onclick="connectWallet()">
+                    <i class="fas fa-wallet"></i>
+                    Connect Wallet
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>TradeLens</span>
+                    </div>
+                    <p class="footer-description">
+                        The Duolingo of crypto trading. Learn by predicting, compare with AI, and improve through gamified coaching.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="pages/learning.html">Learning Hub</a></li>
+                        <li><a href="pages/kuma.html">KUMA AI Assistant</a></li>
+                        <li><a href="pages/dashboard.html">Risk Dashboard</a></li>
+                        <li><a href="pages/community.html">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Trading Guides</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@tradelens.ai">hello@tradelens.ai</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Feature Requests</a></li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Newsletter</h5>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Enter your email">
+                            <button class="btn btn-primary btn-small">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 TradeLens. All rights reserved.</p>
+                    <div class="footer-badges">
+                        <span class="badge">🏆 Hackodisha Winner</span>
+                        <span class="badge">🚀 AI-Powered</span>
+                        <span class="badge">🔒 Secure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Loader for Index -->
+    <div id="indexLoader" class="page-loader hidden">
+        <div class="loading-container">
+            <div class="loader"></div>
+            <div class="loading-text">Loading TradeLens...</div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/bonney-widget.js"></script>
+</body>
+</html>
