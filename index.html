@@ -18,7 +18,10 @@
                 <i class="fas fa-chart-line"></i>
                 TradeLens
             </a>
-            <ul class="brutal-nav__menu">
+            <button class="brutal-nav__toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="brutal-nav__menu" id="mobileMenu">
                 <li><a href="#features" class="brutal-nav__link">Features</a></li>
                 <li><a href="#demo" class="brutal-nav__link">Demo</a></li>
                 <li><a href="pages/kuma.html" class="brutal-nav__link">KUMA</a></li>
@@ -383,6 +386,12 @@
 
     <script src="js/app.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/bonney-widget.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('show');
+        }
+    </script>
 </body>
 </html>

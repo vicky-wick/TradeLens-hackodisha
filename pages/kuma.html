@@ -125,26 +125,23 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
+    <!-- Brutalist Navigation -->
+    <nav class="brutal-nav">
+        <div class="brutal-nav__container">
+            <a href="../index.html" class="brutal-nav__logo">
                 <i class="fas fa-chart-line"></i>
-                <span>TradeLens</span>
-            </div>
-            <div class="nav-menu">
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                <a href="learning.html" class="nav-link">Learning</a>
-                <a href="community.html" class="nav-link">Community</a>
-                <a href="kuma.html" class="nav-link">KUMA</a>
-                <li>
-                    <div class="user-menu">
-                        <span id="userName" class="brutal-text brutal-text-white">Loading...</span>
-                        <a href="login.html" class="brutal-btn brutal-btn--primary" style="margin-right: 10px;">Login</a>
-                        <button class="brutal-btn brutal-btn--danger" onclick="logout()">Logout</button>
-                    </div>
-                </li>
-            </div>
+                TradeLens
+            </a>
+            <button class="brutal-nav__toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="brutal-nav__menu" id="mobileMenu">
+                <li><a href="dashboard.html" class="brutal-nav__link">Dashboard</a></li>
+                <li><a href="learning.html" class="brutal-nav__link">Learning</a></li>
+                <li><a href="kuma.html" class="brutal-nav__link brutal-nav__link--active">KUMA</a></li>
+                <li><a href="community.html" class="brutal-nav__link">Community</a></li>
+                <li><a href="login.html" class="brutal-btn brutal-btn--primary">Login</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -181,6 +178,12 @@
 
     <script src="../js/storage.js"></script>
     <script src="../js/bonney-widget.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('show');
+        }
+    </script>
     <script>
         // Handle iframe loading
         const iframe = document.getElementById('kumaIframe');
