@@ -1,5 +1,46 @@
 // TradeLens Learning Hub JavaScript
 
+// Loader utility functions
+function showLoader(loaderId) {
+    const loader = document.getElementById(loaderId);
+    if (loader) {
+        loader.classList.remove('hidden');
+    }
+}
+
+function hideLoader(loaderId) {
+    const loader = document.getElementById(loaderId);
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+}
+
+function showPageLoader() {
+    showLoader('pageLoader');
+}
+
+function hidePageLoader() {
+    hideLoader('pageLoader');
+}
+
+function showContentLoader() {
+    showLoader('learningLoader');
+    const content = document.getElementById('learningContent');
+    if (content) {
+        content.style.display = 'none';
+    }
+}
+
+function hideContentLoader() {
+    hideLoader('learningLoader');
+    const content = document.getElementById('learningContent');
+    if (content) {
+        content.style.display = 'block';
+    }
+}
+
+// Lesson data structure
+const lessons = null;
 let currentUser = null;
 let currentLesson = null;
 let currentCard = 0;
@@ -11,26 +52,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeLearning() {
-    // Check authentication
-    currentUser = TradeLensStorage.getStoredUser();
+    // Show content loader while initializing
+    showContentLoader();
     
-    if (!currentUser) {
-        window.location.href = '../index.html';
-        return;
-    }
-    
-    // Load user profile
-    document.getElementById('userName').textContent = currentUser.displayName;
-    
-    // Initialize lesson data
-    initializeLessonData();
-    
-    // Check for lesson parameter in URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const lessonParam = urlParams.get('lesson');
-    if (lessonParam) {
-        openLesson(lessonParam);
-    }
+    // Simulate loading time for realistic experience
+    setTimeout(() => {
+        // Check authentication
+        currentUser = TradeLensStorage.getStoredUser();
+        
+        if (!currentUser) {
+            window.location.href = '../index.html';
+            return;
+        }
+        
+        // Load user profile
+        document.getElementById('userName').textContent = currentUser.displayName;
+        
+        // Initialize lesson data
+        initializeLessonData();
+        
+        // Hide loader and show content
+        hideContentLoader();
+        
+        // Check for lesson parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonParam = urlParams.get('lesson');
+        if (lessonParam) {
+            openLesson(lessonParam);
+        }
+    }, 1200); // 1.2s loading simulation
 }
 
 function initializeLessonData() {
@@ -1660,19 +1710,27 @@ function initializeLessonData() {
 }
 
 function openLesson(lessonId) {
-    if (!lessonData[lessonId]) return;
+    // Show page loader
+    showPageLoader();
     
-    currentLesson = lessonId;
-    currentCard = 0;
-    
-    const lesson = lessonData[lessonId];
-    document.getElementById('lessonTitle').textContent = lesson.title;
-    
-    // Show modal
-    document.getElementById('lessonModal').classList.add('show');
-    
-    // Load first card
-    loadLessonCard();
+    // Simulate loading delay for realistic experience
+    setTimeout(() => {
+        currentLesson = lessonId;
+        currentCard = 0;
+        
+        const lesson = lessonData[lessonId];
+        if (!lesson) {
+            console.error('Lesson not found:', lessonId);
+            hidePageLoader();
+            return;
+        }
+        
+        document.getElementById('lessonTitle').textContent = lesson.title;
+        document.getElementById('lessonModal').style.display = 'block';
+        
+        loadLessonCard(0);
+        hidePageLoader();
+    }, 800); // 800ms loading simulation
 }
 
 function closeLessonModal() {

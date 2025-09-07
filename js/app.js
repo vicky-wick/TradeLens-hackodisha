@@ -4,9 +4,31 @@
 let currentUser = null;
 let currentPage = 'landing';
 
-// Initialize app when DOM is loaded
+// Loader utility functions
+function showIndexLoader() {
+    const loader = document.getElementById('indexLoader');
+    if (loader) {
+        loader.classList.remove('hidden');
+    }
+}
+
+function hideIndexLoader() {
+    const loader = document.getElementById('indexLoader');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+}
+
+// Initialize app when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    // Show loader on page load
+    showIndexLoader();
+    
+    // Simulate loading time
+    setTimeout(() => {
+        initializeApp();
+        hideIndexLoader();
+    }, 1000);
 });
 
 function initializeApp() {

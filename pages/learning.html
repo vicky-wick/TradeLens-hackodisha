@@ -55,8 +55,16 @@
                 </div>
             </section>
 
+            <!-- Loading State -->
+            <div id="learningLoader" class="content-loader hidden">
+                <div class="loading-container">
+                    <div class="loader"></div>
+                    <div class="loading-text">Loading your learning path...</div>
+                </div>
+            </div>
+
             <!-- Learning Path Categories -->
-            <section class="learning-categories">
+            <section id="learningContent" class="learning-categories">
                 <!-- Beginner Level -->
                 <div class="category-section">
                     <div class="category-header">
@@ -486,6 +494,14 @@
             </section>
         </div>
     </main>
+
+    <!-- Page Loader -->
+    <div id="pageLoader" class="page-loader hidden">
+        <div class="loading-container">
+            <div class="loader"></div>
+            <div class="loading-text">Loading lesson content...</div>
+        </div>
+    </div>
 
     <!-- Lesson Modal -->
     <div id="lessonModal" class="modal">
