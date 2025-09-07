@@ -1,0 +1,9 @@
+@echo off
+echo Installing requirements...
+pip install -r requirements.txt
+
+echo Starting FastAPI backend...
+start cmd /k "uvicorn CryptoTrader.api:app --host 127.0.0.1 --port 8000 --reload"
+
+echo Starting Streamlit frontend...
+start cmd /k "streamlit run streamlit_app.py --server.port 8501"
