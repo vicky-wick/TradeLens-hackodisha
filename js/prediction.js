@@ -1023,3 +1023,16 @@ const predictionStyles = `
 `;
 
 document.head.insertAdjacentHTML('beforeend', predictionStyles);
+
+// Global functions for symbol and timeframe changes
+function changeSymbol(symbol) {
+    if (window.binanceAPI) {
+        window.binanceAPI.changeSymbol(symbol);
+    }
+}
+
+function changeTimeframe(interval) {
+    if (window.binanceAPI) {
+        window.binanceAPI.changeTimeframe(interval);
+    }
+}

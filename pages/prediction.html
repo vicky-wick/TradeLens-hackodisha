@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/components.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -138,47 +140,82 @@
                     <div class="chart-panel">
                         <div class="panel-header">
                             <h2>Market Analysis</h2>
-                            <div class="chart-controls">
-                                <button class="chart-btn active" onclick="showIndicator('price')">Price</button>
-                                <button class="chart-btn" onclick="showIndicator('rsi')">RSI</button>
-                                <button class="chart-btn" onclick="showIndicator('volume')">Volume</button>
+                            <div class="chart-controls-container">
+                                <!-- Symbol Selector -->
+                                <div class="control-group">
+                                    <label>Symbol:</label>
+                                    <select id="symbolSelector" class="chart-select" onchange="changeSymbol(this.value)">
+                                        <option value="BTC">BTC/USDT</option>
+                                        <option value="ETH">ETH/USDT</option>
+                                        <option value="BNB">BNB/USDT</option>
+                                        <option value="ADA">ADA/USDT</option>
+                                        <option value="SOL">SOL/USDT</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Timeframe Selector -->
+                                <div class="control-group">
+                                    <label>Timeframe:</label>
+                                    <select id="timeframeSelector" class="chart-select" onchange="changeTimeframe(this.value)">
+                                        <option value="1m">1 Minute</option>
+                                        <option value="5m">5 Minutes</option>
+                                        <option value="15m">15 Minutes</option>
+                                        <option value="1h">1 Hour</option>
+                                        <option value="4h">4 Hours</option>
+                                        <option value="1d">1 Day</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Chart Type Controls -->
+                                <div class="chart-controls">
+                                    <button class="chart-btn active" onclick="showIndicator('price')">Price</button>
+                                    <button class="chart-btn" onclick="showIndicator('rsi')">RSI</button>
+                                    <button class="chart-btn" onclick="showIndicator('volume')">Volume</button>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="chart-container" id="chartContainer">
-                            <div class="mock-chart">
-                                <div class="chart-title">BTC/USD - 1H Chart</div>
-                                <div class="price-chart-mock">
-                                    <!-- Mock candlestick chart -->
-                                    <div class="candle-container">
-                                        <div class="candle green" style="left: 10%; height: 60%"></div>
-                                        <div class="candle red" style="left: 20%; height: 40%"></div>
-                                        <div class="candle green" style="left: 30%; height: 80%"></div>
-                                        <div class="candle green" style="left: 40%; height: 70%"></div>
-                                        <div class="candle red" style="left: 50%; height: 50%"></div>
-                                        <div class="candle green" style="left: 60%; height: 90%"></div>
-                                        <div class="candle red" style="left: 70%; height: 30%"></div>
-                                        <div class="candle green" style="left: 80%; height: 85%"></div>
-                                        <div class="candle current" style="left: 90%; height: 75%"></div>
-                                    </div>
-                                    <div class="current-price-line">$43,250</div>
+                            <!-- Loading State -->
+                            <div id="chartLoader" class="content-loader">
+                                <div class="loading-container">
+                                    <div class="loader"></div>
+                                    <div class="loading-text">Loading live market data...</div>
                                 </div>
-                                
-                                <!-- RSI Indicator -->
-                                <div class="rsi-indicator" id="rsiIndicator">
-                                    <div class="indicator-title">RSI (14)</div>
-                                    <div class="rsi-chart">
-                                        <div class="rsi-levels">
-                                            <div class="rsi-line overbought">70</div>
-                                            <div class="rsi-line oversold">30</div>
+                            </div>
+                            
+                            <!-- Live Chart -->
+                            <div id="liveChart" class="live-chart-container" style="display: none;">
+                                <div class="chart-header">
+                                    <div class="chart-title" id="chartTitle">BTC/USDT - 1m</div>
+                                    <div class="chart-status">
+                                        <div class="status-indicator" id="connectionStatus">
+                                            <i class="fas fa-circle text-success"></i>
+                                            <span>Live</span>
                                         </div>
-                                        <div class="rsi-value" style="bottom: 78%">
-                                            <span class="rsi-number">78</span>
-                                        </div>
+                                        <div class="last-update" id="lastUpdate">Updated now</div>
                                     </div>
-                                    <div class="rsi-status overbought">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        Overbought Territory
+                                </div>
+                                <div id="tradingViewChart" class="trading-chart"></div>
+                                
+                                <!-- Technical Indicators Panel -->
+                                <div class="indicators-panel" id="indicatorsPanel">
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Price:</span>
+                                        <span class="indicator-value" id="currentPriceValue">Loading...</span>
+                                        <span class="indicator-change" id="priceChange">--</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">24h Volume:</span>
+                                        <span class="indicator-value" id="volume24h">Loading...</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">24h High:</span>
+                                        <span class="indicator-value" id="high24h">Loading...</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">24h Low:</span>
+                                        <span class="indicator-value" id="low24h">Loading...</span>
                                     </div>
                                 </div>
                             </div>
@@ -273,6 +310,7 @@
     </div>
 
     <script src="../js/storage.js"></script>
+    <script src="../js/binance-api.js"></script>
     <script src="../js/ml-mentor.js"></script>
     <script src="../js/prediction.js"></script>
 </body>
