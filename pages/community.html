@@ -88,19 +88,72 @@
                 </div>
             </section>
 
+            <!-- Crypto Sections -->
+            <section class="crypto-sections">
+                <div class="crypto-tabs">
+                    <button class="crypto-tab active" onclick="filterByCrypto('ALL')" data-crypto="ALL">
+                        <i class="fas fa-globe"></i>
+                        <span>All Cryptos</span>
+                        <div class="post-count">156</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('BTC')" data-crypto="BTC">
+                        <i class="fab fa-bitcoin"></i>
+                        <span>Bitcoin</span>
+                        <div class="post-count">45</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('ETH')" data-crypto="ETH">
+                        <i class="fab fa-ethereum"></i>
+                        <span>Ethereum</span>
+                        <div class="post-count">32</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('ADA')" data-crypto="ADA">
+                        <i class="fas fa-coins"></i>
+                        <span>Cardano</span>
+                        <div class="post-count">18</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('SOL')" data-crypto="SOL">
+                        <i class="fas fa-sun"></i>
+                        <span>Solana</span>
+                        <div class="post-count">12</div>
+                    </button>
+                    <button class="crypto-tab" onclick="filterByCrypto('DOT')" data-crypto="DOT">
+                        <i class="fas fa-circle"></i>
+                        <span>Polkadot</span>
+                        <div class="post-count">6</div>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Trending Topics -->
+            <section class="trending-section">
+                <div class="trending-header">
+                    <h3><i class="fas fa-fire"></i> Trending Topics</h3>
+                </div>
+                <div class="trending-tags">
+                    <span class="trending-tag" onclick="filterByTrend('BitcoinETF')">#BitcoinETF</span>
+                    <span class="trending-tag" onclick="filterByTrend('EthereumUpgrade')">#EthereumUpgrade</span>
+                    <span class="trending-tag" onclick="filterByTrend('DeFiSummer')">#DeFiSummer</span>
+                    <span class="trending-tag" onclick="filterByTrend('NFTMarket')">#NFTMarket</span>
+                    <span class="trending-tag" onclick="filterByTrend('Web3Gaming')">#Web3Gaming</span>
+                    <span class="trending-tag" onclick="filterByTrend('LayerTwo')">#LayerTwoSolutions</span>
+                </div>
+            </section>
+
             <!-- Feed Filters -->
             <section class="feed-filters">
                 <div class="filter-tabs">
                     <button class="filter-tab active" onclick="filterFeed('all')">All Posts</button>
                     <button class="filter-tab" onclick="filterFeed('predictions')">Predictions</button>
-                    <button class="filter-tab" onclick="filterFeed('insights')">AI Insights</button>
-                    <button class="filter-tab" onclick="filterFeed('following')">Following</button>
+                    <button class="filter-tab" onclick="filterFeed('analysis')">Analysis</button>
+                    <button class="filter-tab" onclick="filterFeed('discussion')">Discussion</button>
+                    <button class="filter-tab" onclick="filterFeed('news')">News</button>
                 </div>
                 <div class="sort-options">
                     <select id="sortSelect" onchange="sortFeed(this.value)">
                         <option value="recent">Most Recent</option>
                         <option value="popular">Most Popular</option>
                         <option value="accurate">Most Accurate</option>
+                        <option value="engagement">Most Engaging</option>
                     </select>
                 </div>
             </section>
@@ -131,8 +184,19 @@
             
             <form class="post-form" onsubmit="createPost(event)">
                 <div class="form-group">
-                    <label>What's your prediction?</label>
-                    <textarea id="postContent" placeholder="Share your market analysis, prediction rationale, or trading insights..." rows="4" required></textarea>
+                    <label>Post Type</label>
+                    <select id="postType" onchange="updatePostForm()">
+                        <option value="tweet">General Tweet</option>
+                        <option value="prediction">Price Prediction</option>
+                        <option value="analysis">Technical Analysis</option>
+                        <option value="discussion">Discussion Topic</option>
+                        <option value="news">News & Updates</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label id="contentLabel">What's on your mind?</label>
+                    <textarea id="postContent" placeholder="Share your thoughts, analysis, or insights with the community..." rows="4" required></textarea>
                 </div>
                 
                 <div class="prediction-quick-add">
@@ -143,6 +207,11 @@
                             <option value="BTC">Bitcoin (BTC)</option>
                             <option value="ETH">Ethereum (ETH)</option>
                             <option value="ADA">Cardano (ADA)</option>
+                            <option value="SOL">Solana (SOL)</option>
+                            <option value="DOT">Polkadot (DOT)</option>
+                            <option value="MATIC">Polygon (MATIC)</option>
+                            <option value="LINK">Chainlink (LINK)</option>
+                            <option value="DOGE">Dogecoin (DOGE)</option>
                         </select>
                         <select id="quickDirection">
                             <option value="">Direction</option>
@@ -190,6 +259,7 @@
     </div>
 
     <script src="../js/storage.js"></script>
+    <script src="../js/community-data.js"></script>
     <script src="../js/community.js"></script>
     <script src="../js/bonney-widget.js"></script>
 </body>

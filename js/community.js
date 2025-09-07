@@ -1,16 +1,15 @@
-// TradeLens Community Feed JavaScript
+// TradeLens Enhanced Community Feed JavaScript
 
 let currentUser = null;
-let currentFilter = 'all';
-let currentSort = 'recent';
 let currentPostId = null;
+let communityData = null;
 
 // Initialize community feed when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeCommunity();
 });
 
-function initializeCommunity() {
+async function initializeCommunity() {
     // Check authentication
     currentUser = TradeLensStorage.getStoredUser();
     
@@ -22,56 +21,102 @@ function initializeCommunity() {
     // Load user profile
     document.getElementById('userName').textContent = currentUser.displayName;
     
+    // Show loading state
+    const feedContainer = document.getElementById('feedPosts');
+    feedContainer.innerHTML = `
+        <div class="loading-state">
+            <div class="jumping-cube-loader">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <p>Loading community posts...</p>
+        </div>
+    `;
+    
+    // Initialize data manager with async loading
+    communityData = new CommunityDataManager();
+    await communityData.initialize();
+    
+    // Update crypto post counts
+    updateCryptoPostCounts();
+    
     // Load community feed
     loadCommunityFeed();
 }
 
 function loadCommunityFeed() {
-    const posts = TradeLensStorage.getStoredCommunityPosts();
-    const filteredPosts = filterPosts(posts);
-    const sortedPosts = sortPosts(filteredPosts);
+    const posts = communityData.getFilteredPosts();
+    displayPosts(posts);
+}
+
+// Update crypto post counts in tabs
+function updateCryptoPostCounts() {
+    const counts = communityData.getCryptoPostCounts();
     
-    displayPosts(sortedPosts);
+    Object.keys(counts).forEach(crypto => {
+        const tab = document.querySelector(`[data-crypto="${crypto}"]`);
+        if (tab) {
+            const countElement = tab.querySelector('.post-count');
+            if (countElement) {
+                countElement.textContent = counts[crypto];
+            }
+        }
+    });
 }
 
-function filterPosts(posts) {
-    switch (currentFilter) {
-        case 'predictions':
-            return posts.filter(post => post.predictionId);
-        case 'insights':
-            return posts.filter(post => post.content.toLowerCase().includes('ai') || 
-                                      post.content.toLowerCase().includes('mentor'));
-        case 'following':
-            // Mock following logic - in real app would check user's following list
-            return posts.filter(post => Math.random() > 0.7);
-        default:
-            return posts;
-    }
+// Filter by cryptocurrency
+function filterByCrypto(crypto) {
+    communityData.currentCrypto = crypto;
+    
+    // Update active tab
+    document.querySelectorAll('.crypto-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelector(`[data-crypto="${crypto}"]`).classList.add('active');
+    
+    // Clear trend filter when switching crypto
+    communityData.currentTrend = null;
+    document.querySelectorAll('.trending-tag').forEach(tag => tag.classList.remove('active'));
+    
+    // Reload feed
+    loadCommunityFeed();
 }
 
-function sortPosts(posts) {
-    switch (currentSort) {
-        case 'popular':
-            return posts.sort((a, b) => (b.likes || 0) - (a.likes || 0));
-        case 'accurate':
-            return posts.filter(p => p.predictionId).sort((a, b) => {
-                // Mock accuracy sorting - in real app would use actual prediction results
-                return Math.random() - 0.5;
-            });
-        default: // recent
-            return posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    }
+// Filter by trending topic
+function filterByTrend(trend) {
+    communityData.currentTrend = trend;
+    
+    // Update active trending tag
+    document.querySelectorAll('.trending-tag').forEach(tag => tag.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Reload feed
+    loadCommunityFeed();
+}
+
+function filterFeed(filter) {
+    communityData.currentFilter = filter;
+    
+    // Update active tab
+    document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Reload feed
+    loadCommunityFeed();
+}
+
+function sortFeed(sortBy) {
+    communityData.currentSort = sortBy;
+    loadCommunityFeed();
 }
 
 function displayPosts(posts) {
     const feedContainer = document.getElementById('feedPosts');
     
     if (posts.length === 0) {
+        const cryptoText = communityData.currentCrypto === 'ALL' ? 'this filter' : communityData.currentCrypto;
         feedContainer.innerHTML = `
             <div class="empty-feed">
                 <i class="fas fa-comments"></i>
                 <h3>No posts found</h3>
-                <p>Be the first to share your prediction!</p>
+                <p>Be the first to share something about ${cryptoText}!</p>
                 <button class="btn btn-primary" onclick="showPostModal()">
                     <i class="fas fa-plus"></i>
                     Create Post
@@ -87,6 +132,8 @@ function displayPosts(posts) {
 function createPostHTML(post) {
     const timeAgo = formatTimeAgo(post.createdAt);
     const isLiked = post.likedBy && post.likedBy.includes(currentUser.id);
+    const badgeIcon = communityData.getBadgeIcon(post.userBadge);
+    const cryptoIcon = communityData.getCryptoIcon(post.cryptoSymbol);
     
     return `
         <div class="feed-post" data-post-id="${post.id}">
@@ -96,8 +143,18 @@ function createPostHTML(post) {
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="user-details">
-                        <div class="user-name">${post.userName}</div>
-                        <div class="post-time">${timeAgo}</div>
+                        <div class="user-name">
+                            ${post.userName}
+                            <i class="${badgeIcon} user-badge" title="${post.userBadge}"></i>
+                        </div>
+                        <div class="post-meta">
+                            <span class="post-time">${timeAgo}</span>
+                            <span class="post-crypto">
+                                <i class="${cryptoIcon}"></i>
+                                ${post.cryptoSymbol}
+                            </span>
+                            <span class="post-type">${post.postType}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="post-menu">
@@ -109,7 +166,8 @@ function createPostHTML(post) {
             
             <div class="post-content">
                 <p>${post.content}</p>
-                ${post.predictionId ? createPredictionCard(post) : ''}
+                ${post.prediction ? createPredictionCard(post) : ''}
+                ${post.tags ? createTagsHTML(post.tags) : ''}
             </div>
             
             <div class="post-actions">
@@ -125,10 +183,10 @@ function createPostHTML(post) {
                     <i class="fas fa-share"></i>
                     <span>Share</span>
                 </button>
-                ${post.predictionId ? `
-                <button class="action-btn prediction-btn" onclick="viewPredictionDetails('${post.predictionId}')">
+                ${post.prediction ? `
+                <button class="action-btn prediction-btn" onclick="viewPredictionDetails('${post.id}')">
                     <i class="fas fa-chart-line"></i>
-                    <span>View Analysis</span>
+                    <span>Analysis</span>
                 </button>
                 ` : ''}
             </div>
@@ -136,8 +194,18 @@ function createPostHTML(post) {
     `;
 }
 
+function createTagsHTML(tags) {
+    if (!tags || tags.length === 0) return '';
+    
+    return `
+        <div class="post-tags">
+            ${tags.map(tag => `<span class="post-tag" onclick="filterByTrend('${tag}')">#${tag}</span>`).join('')}
+        </div>
+    `;
+}
+
 function createPredictionCard(post) {
-    if (!post.predictionId) return '';
+    if (!post.prediction) return '';
     
     const directionClass = post.prediction ? post.prediction.toLowerCase() : 'neutral';
     const directionIcon = getDirectionIcon(post.prediction);
@@ -146,10 +214,10 @@ function createPredictionCard(post) {
         <div class="prediction-card-mini">
             <div class="prediction-header-mini">
                 <div class="asset-info">
-                    <span class="asset-name">${post.asset || 'BTC'}</span>
+                    <span class="asset-name">${post.cryptoSymbol}</span>
                     <span class="prediction-direction ${directionClass}">
                         <i class="fas fa-${directionIcon}"></i>
-                        ${post.prediction || 'UP'}
+                        ${post.prediction}
                     </span>
                 </div>
                 <div class="confidence-mini">
@@ -187,24 +255,9 @@ function formatTimeAgo(dateString) {
     return date.toLocaleDateString();
 }
 
-function filterFeed(filter) {
-    currentFilter = filter;
-    
-    // Update active tab
-    document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    // Reload feed
-    loadCommunityFeed();
-}
-
-function sortFeed(sortBy) {
-    currentSort = sortBy;
-    loadCommunityFeed();
-}
 
 function toggleLike(postId) {
-    const post = TradeLensStorage.likeCommunityPost(postId, currentUser.id);
+    const post = communityData.toggleLike(postId, currentUser.id);
     if (post) {
         // Update UI
         const postElement = document.querySelector(`[data-post-id="${postId}"]`);
@@ -218,8 +271,7 @@ function toggleLike(postId) {
 
 function showComments(postId) {
     currentPostId = postId;
-    const posts = TradeLensStorage.getStoredCommunityPosts();
-    const post = posts.find(p => p.id === postId);
+    const post = communityData.posts.find(p => p.id === postId);
     
     if (!post) return;
     
@@ -276,7 +328,7 @@ function addComment(event) {
         content: content
     };
     
-    TradeLensStorage.addCommentToPost(currentPostId, comment);
+    communityData.addComment(currentPostId, comment);
     
     // Clear input
     commentInput.value = '';
@@ -326,25 +378,35 @@ function createPost(event) {
     event.preventDefault();
     
     const content = document.getElementById('postContent').value.trim();
+    const postType = document.getElementById('postType').value;
+    const quickAsset = document.getElementById('quickAsset').value;
+    const quickDirection = document.getElementById('quickDirection').value;
+    const quickConfidence = document.getElementById('quickConfidence').value;
+    
     if (!content) return;
     
-    // Check if post contains prediction info
-    const predictionMatch = content.match(/🎯 Prediction: (\w+) (\w+) with (\d+)% confidence/);
+    // Create post data
     let postData = {
         userId: currentUser.id,
         userName: currentUser.displayName,
-        content: content
+        userBadge: currentUser.badge || 'trader',
+        content: content,
+        postType: postType,
+        cryptoSymbol: quickAsset || communityData.currentCrypto === 'ALL' ? 'BTC' : communityData.currentCrypto,
+        tags: extractHashtags(content)
     };
     
-    if (predictionMatch) {
-        postData.asset = predictionMatch[1];
-        postData.prediction = predictionMatch[2];
-        postData.confidence = parseInt(predictionMatch[3]);
-        postData.predictionId = TradeLensStorage.generateId();
+    // Add prediction data if available
+    if (quickDirection && quickConfidence) {
+        postData.prediction = quickDirection;
+        postData.confidence = parseInt(quickConfidence);
     }
     
     // Store post
-    TradeLensStorage.storeCommunityPost(postData);
+    communityData.addPost(postData);
+    
+    // Update crypto counts
+    updateCryptoPostCounts();
     
     // Hide modal and reload feed
     hidePostModal();
@@ -354,15 +416,51 @@ function createPost(event) {
     showAlert('Post shared successfully! 🎉', 'success');
 }
 
+// Extract hashtags from content
+function extractHashtags(content) {
+    const hashtagRegex = /#[\w]+/g;
+    const matches = content.match(hashtagRegex);
+    return matches ? matches.map(tag => tag.substring(1)) : [];
+}
+
+// Update post form based on type
+function updatePostForm() {
+    const postType = document.getElementById('postType').value;
+    const contentLabel = document.getElementById('contentLabel');
+    const postContent = document.getElementById('postContent');
+    
+    const labels = {
+        tweet: 'What\'s on your mind?',
+        prediction: 'Share your price prediction',
+        analysis: 'Share your technical analysis',
+        discussion: 'Start a discussion topic',
+        news: 'Share news and updates'
+    };
+    
+    const placeholders = {
+        tweet: 'Share your thoughts with the community...',
+        prediction: 'I predict that [CRYPTO] will [DIRECTION] because...',
+        analysis: 'Looking at the charts, I see...',
+        discussion: 'What do you think about...',
+        news: 'Breaking: [NEWS HEADLINE]...'
+    };
+    
+    contentLabel.textContent = labels[postType] || labels.tweet;
+    postContent.placeholder = placeholders[postType] || placeholders.tweet;
+}
+
 function sharePost(postId) {
     // Mock share functionality
     navigator.clipboard.writeText(`Check out this prediction on TradeLens! Post ID: ${postId}`);
     showAlert('Post link copied to clipboard!', 'info');
 }
 
-function viewPredictionDetails(predictionId) {
-    // Navigate to prediction details (mock)
-    showAlert('Prediction analysis coming soon!', 'info');
+function viewPredictionDetails(postId) {
+    const post = communityData.posts.find(p => p.id === postId);
+    if (!post) return;
+    
+    // Show detailed prediction analysis
+    showAlert(`Prediction: ${post.cryptoSymbol} ${post.prediction} with ${post.confidence}% confidence`, 'info');
 }
 
 function togglePostMenu(postId) {
